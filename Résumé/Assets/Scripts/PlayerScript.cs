@@ -77,6 +77,13 @@ public class PlayerScript : MonoBehaviour
         if (collision.gameObject.CompareTag("SlowDownTime"))
         {
             Time.timeScale = 0.5f;
+            SpriteRenderer[] darkenObjects = FindObjectsOfType<SpriteRenderer>();
+
+            foreach (SpriteRenderer obj in darkenObjects)
+            {
+                if (obj.gameObject != gameObject && collision.gameObject != obj.gameObject)
+                    obj.color = new Color(0.5f, 0.5f, 0.5f);
+            }
         }
 
         if (collision.gameObject.CompareTag("Scroll"))
@@ -120,6 +127,13 @@ public class PlayerScript : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         Time.timeScale = 1.0f;
+        SpriteRenderer[] darkenObjects = FindObjectsOfType<SpriteRenderer>();
+
+        foreach (SpriteRenderer obj in darkenObjects)
+        {
+            if (obj.gameObject != gameObject )
+                obj.color = Color.white;
+        }
     }
 
     private void OnDrawGizmosSelected()
