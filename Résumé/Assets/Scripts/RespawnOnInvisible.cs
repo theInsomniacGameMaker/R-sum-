@@ -9,11 +9,9 @@ public class RespawnOnInvisible : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        //Debug.Break();
-        if (spawnPosition!=null)
+        if (spawnPosition != null)
             transform.position = new Vector2(spawnPosition.position.x, transform.position.y);
     }
-
 
 
 }
