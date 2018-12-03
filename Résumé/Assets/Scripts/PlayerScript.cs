@@ -8,8 +8,6 @@ public class PlayerScript : MonoBehaviour
     private bool isRolling;
     private bool isSlashing;
 
-    private Color attackSphereColor;
-
     private Rigidbody2D selfRigidBody;
     private Animator selfAnimator;
 
@@ -27,7 +25,6 @@ public class PlayerScript : MonoBehaviour
 
     private void Awake()
     {
-        attackSphereColor = Color.red;
         selfRigidBody = GetComponent<Rigidbody2D>();
         selfAnimator = GetComponent<Animator>();
     }
@@ -111,12 +108,10 @@ public class PlayerScript : MonoBehaviour
     private void EndSlashing()
     {
         isSlashing = false;
-        attackSphereColor = Color.red;
     }
 
     private void Attack()
     {
-        attackSphereColor = Color.blue;
         Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPosition.position, attackRange);
         //send message to enemies
     }
@@ -129,7 +124,7 @@ public class PlayerScript : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = attackSphereColor;
+        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPosition.position, attackRange);
     }
 }
