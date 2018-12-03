@@ -23,4 +23,10 @@ public class Scroll : MonoBehaviour
 
         transform.Translate(direction * speed * Time.deltaTime);
     }
+
+    private void OnValidate()
+    {
+        speed = Mathf.Abs(speed);
+        direction.Normalize();
+    }
 }

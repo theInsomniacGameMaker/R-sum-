@@ -22,6 +22,9 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     private Transform attackPosition;
 
+    [SerializeField]
+    private GameObject itemFeedback;
+
     private void Awake()
     {
         attackSphereColor = Color.red;
@@ -31,7 +34,7 @@ public class PlayerScript : MonoBehaviour
 
     private void Start()
     {
-        
+
     }
 
     private void Update()
@@ -63,8 +66,6 @@ public class PlayerScript : MonoBehaviour
         selfAnimator.SetBool("Slashing", isSlashing);
     }
 
-    
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -74,9 +75,32 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("SlowDownTime"))
+        {
+            Time.timeScale = 0.5f;
+        }
+
+        if (collision.gameObject.CompareTag("Scroll"))
+        {
+            StartCoroutine(ResetTimeAfterDelay(.3f));
+            Instantiate(itemFeedback, collision.gameObject.transform.position, Quaternion.identity);
+            Destroy(collision.gameObject);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("SlowDownTime"))
+        {
+            Time.timeScale = 1.0f;
+        }
+    }
+
     private void Jump()
     {
-        selfRigidBody.AddForce(new Vector2(0, 1) * forceFactor,ForceMode2D.Impulse);
+        selfRigidBody.AddForce(new Vector2(0, 1) * forceFactor, ForceMode2D.Impulse);
     }
 
     private void EndRolling()
@@ -95,6 +119,12 @@ public class PlayerScript : MonoBehaviour
         attackSphereColor = Color.blue;
         Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPosition.position, attackRange);
         //send message to enemies
+    }
+
+    private IEnumerator ResetTimeAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Time.timeScale = 1.0f;
     }
 
     private void OnDrawGizmosSelected()
