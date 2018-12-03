@@ -11,12 +11,12 @@ public class Scroll : MonoBehaviour
     [SerializeField]
     private Vector2 direction;
 
-    void Start ()
+    private void Start ()
     {
         direction.Normalize();
 	}
 	
-	void Update ()
+	private void Update ()
     {
         if (speed == 0.0f)
             Debug.Log("Speed is set to 0 for " + gameObject.name);
