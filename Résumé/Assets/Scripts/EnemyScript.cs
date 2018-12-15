@@ -10,9 +10,11 @@ public class EnemyScript : MonoBehaviour
     private Rigidbody2D selfRigidBody;
     private Animator selfAnimator;
 
-
     [SerializeField]
     private Vector2 direction;
+
+    [SerializeField]
+    private GameObject deathFX;
 
     private void Awake()
     {
@@ -54,5 +56,9 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
-
+    public void TakeDamage()
+    {
+        Instantiate(deathFX, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+    }
 }
