@@ -92,7 +92,7 @@ public class PlayerScript : MonoBehaviour
         {
             StartCoroutine(ResetTimeAfterDelay(.3f));
             Instantiate(itemFeedback, collision.gameObject.transform.position, Quaternion.identity);
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
         }
     }
 
