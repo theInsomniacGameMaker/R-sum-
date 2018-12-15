@@ -67,12 +67,12 @@ public class PlayerScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            Debug.Log("Touching Object");
-            Debug.Log(selfRigidBody.velocity.y);
+            //Debug.Log("Touching Object");
+            //Debug.Log(selfRigidBody.velocity.y);
             if (Mathf.Round(selfRigidBody.velocity.y) <= 0.0f)
             {
                 isOnGround = false;
-                Debug.Log("Velocity Criteria MET");
+                //Debug.Log("Velocity Criteria MET");
             }
         }
     }
