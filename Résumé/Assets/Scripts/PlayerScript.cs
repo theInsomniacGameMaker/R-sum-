@@ -100,7 +100,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("SlowDownTime"))
         {
-            Time.timeScale = 1.0f;
+            StartCoroutine(ResetTimeAfterDelay(0.0f));
         }
     }
 

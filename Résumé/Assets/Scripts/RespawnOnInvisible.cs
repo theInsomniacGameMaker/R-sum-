@@ -26,11 +26,8 @@ public class RespawnOnInvisible : MonoBehaviour
 
             if (gameObject.name == "Foreground")
             {
-                Debug.Log("It is Foreground");
-
                 if (SpawnManager.resetCount++ % 2 == 0)
                 {
-                    Debug.Log("Instantiated");
                     Instantiate(scroll, (Vector2)(transform.GetChild(Random.Range(0, transform.childCount)).position), Quaternion.identity);
                 }
             }
