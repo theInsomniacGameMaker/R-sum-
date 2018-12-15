@@ -67,12 +67,9 @@ public class PlayerScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            //Debug.Log("Touching Object");
-            //Debug.Log(selfRigidBody.velocity.y);
             if (Mathf.Round(selfRigidBody.velocity.y) <= 0.0f)
             {
                 isOnGround = false;
-                //Debug.Log("Velocity Criteria MET");
             }
         }
     }
@@ -86,7 +83,7 @@ public class PlayerScript : MonoBehaviour
 
             foreach (SpriteRenderer obj in darkenObjects)
             {
-                if (obj.gameObject != gameObject && collision.gameObject != obj.gameObject)
+                if (obj.gameObject != gameObject && collision.transform.parent.gameObject != obj.gameObject)
                     obj.color = new Color(0.5f, 0.5f, 0.5f);
             }
         }
