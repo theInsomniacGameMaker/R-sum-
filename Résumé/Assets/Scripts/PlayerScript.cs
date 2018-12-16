@@ -132,10 +132,11 @@ public class PlayerScript : MonoBehaviour
 
         foreach (Collider2D enemy in enemiesToDamage)
         {
-            if (enemy.gameObject.CompareTag("Enemy"))
+            if (enemy.gameObject.CompareTag("Hitbox"))
             {
+                //Debug.Break();
                 CameraShake.Instance.ShakeCamera(3,0.2f);
-                enemy.gameObject.SendMessage("TakeDamage");
+                enemy.transform.parent.SendMessage("TakeDamage");
             }
         }
     }
