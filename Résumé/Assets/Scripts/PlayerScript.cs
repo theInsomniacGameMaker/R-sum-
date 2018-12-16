@@ -134,6 +134,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (enemy.gameObject.CompareTag("Enemy"))
             {
+                CameraShake.Instance.ShakeCamera(3,0.2f);
                 enemy.gameObject.SendMessage("TakeDamage");
             }
         }
