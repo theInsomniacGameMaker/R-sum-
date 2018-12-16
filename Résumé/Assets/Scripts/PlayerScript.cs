@@ -7,6 +7,7 @@ public class PlayerScript : MonoBehaviour
     private bool isOnGround;
     private bool isRolling;
     private bool isSlashing;
+    private bool isDead;
 
     private Rigidbody2D selfRigidBody;
     private Animator selfAnimator;
@@ -31,7 +32,7 @@ public class PlayerScript : MonoBehaviour
 
     private void Start()
     {
-
+        isDead = false;
     }
 
     private void Update()
@@ -61,6 +62,7 @@ public class PlayerScript : MonoBehaviour
         selfAnimator.SetBool("Jump", isOnGround);
         selfAnimator.SetBool("Rolling", isRolling);
         selfAnimator.SetBool("Slashing", isSlashing);
+        selfAnimator.SetBool("Dead", isDead);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -71,6 +73,11 @@ public class PlayerScript : MonoBehaviour
             {
                 isOnGround = false;
             }
+        }
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            isDead = true;   
         }
     }
 
