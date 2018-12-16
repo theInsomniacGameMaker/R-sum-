@@ -24,6 +24,8 @@ public class EnemyScript : MonoBehaviour
 
     private void Start()
     {
+        PlayerScript.onPlayerDeath += PlayerKilled;
+
         if (Random.value > 0.5f)
         {
             willCharge = true;
@@ -61,5 +63,15 @@ public class EnemyScript : MonoBehaviour
         speed = 0.0f;
         Instantiate(deathFX, transform.position, Quaternion.identity);
         Destroy(gameObject);
+    }
+
+    private void PlayerKilled()
+    {
+        willCharge = false;
+    }
+
+    private void OnDisable()
+    {
+        PlayerScript.onPlayerDeath -= PlayerKilled;
     }
 }

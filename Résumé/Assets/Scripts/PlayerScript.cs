@@ -12,6 +12,9 @@ public class PlayerScript : MonoBehaviour
     private Rigidbody2D selfRigidBody;
     private Animator selfAnimator;
 
+    public delegate void PlayerDeath();
+    public static event PlayerDeath onPlayerDeath;
+
     [SerializeField]
     private float forceFactor;
 
@@ -81,8 +84,11 @@ public class PlayerScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             isDead = true;
-
             GameManager.scrollMultiplier = 0;
+            if (onPlayerDeath!=null)
+            {
+                onPlayerDeath();
+            }
         }
     }
 
