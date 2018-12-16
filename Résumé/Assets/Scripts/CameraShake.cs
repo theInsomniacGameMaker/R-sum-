@@ -25,13 +25,13 @@ public class CameraShake : MonoBehaviour
     }
 
 
-        public IEnumerator ShakeCamera(float magnitude, float duration)
+    public IEnumerator ShakeCamera(float magnitude, float duration)
     {
         Vector3 originalPosition = transform.position;
 
         float elapsedTime = 0.0f;
 
-        while (elapsedTime<duration)
+        while (elapsedTime < duration)
         {
             float x = Random.Range(-1.0f, 1.0f) * magnitude;
             float y = Random.Range(-1.0f, 1.0f) * magnitude;

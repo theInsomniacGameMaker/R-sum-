@@ -43,17 +43,20 @@ public class PlayerScript : MonoBehaviour
 
     private void PlayerInput()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && !isOnGround)
+        if (!isDead)
         {
-            isOnGround = true;
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) && !isRolling)
-        {
-            isRolling = true;
-        }
-        else if (Input.GetKeyDown(KeyCode.Space) && !isSlashing)
-        {
-            isSlashing = true;
+            if (Input.GetKeyDown(KeyCode.UpArrow) && !isOnGround)
+            {
+                isOnGround = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow) && !isRolling)
+            {
+                isRolling = true;
+            }
+            else if (Input.GetKeyDown(KeyCode.Space) && !isSlashing)
+            {
+                isSlashing = true;
+            }
         }
     }
 
@@ -77,7 +80,9 @@ public class PlayerScript : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            isDead = true;   
+            isDead = true;
+
+            GameManager.scrollMultiplier = 0;
         }
     }
 
@@ -134,7 +139,6 @@ public class PlayerScript : MonoBehaviour
         {
             if (enemy.gameObject.CompareTag("Hitbox"))
             {
-                //Debug.Break();
                 CameraShake.Instance.ShakeCamera(3,0.2f);
                 enemy.transform.parent.SendMessage("TakeDamage");
             }

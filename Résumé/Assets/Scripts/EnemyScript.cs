@@ -42,7 +42,7 @@ public class EnemyScript : MonoBehaviour
 
         if (!isFalling)
         {
-            transform.Translate(direction * speed * Time.deltaTime);
+            transform.Translate(direction * speed * Time.deltaTime * GameManager.scrollMultiplier);
         }
 
         Debug.Log("Speed = " + speed);
