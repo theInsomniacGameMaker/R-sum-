@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: -1, y: 0}
-  deathFX: {fileID: 0}
+  deathFX: {fileID: 1438349995925354, guid: 6702cebf5193d3b4aa829c90b1e88ac9, type: 2}
 --- !u!212 &212675904384692932
 SpriteRenderer:
   m_ObjectHideFlags: 1

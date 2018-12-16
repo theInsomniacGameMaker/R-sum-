@@ -122,7 +122,14 @@ public class PlayerScript : MonoBehaviour
     private void Attack()
     {
         Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPosition.position, attackRange);
-        //send message to enemies
+
+        foreach (Collider2D enemy in enemiesToDamage)
+        {
+            if (enemy.gameObject.CompareTag("Enemy"))
+            {
+                enemy.gameObject.SendMessage("TakeDamage");
+            }
+        }
     }
 
     private IEnumerator ResetTimeAfterDelay(float delay)

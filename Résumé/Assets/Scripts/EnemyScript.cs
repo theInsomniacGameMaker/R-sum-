@@ -58,6 +58,7 @@ public class EnemyScript : MonoBehaviour
 
     public void TakeDamage()
     {
+        speed = 0.0f;
         Instantiate(deathFX, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
