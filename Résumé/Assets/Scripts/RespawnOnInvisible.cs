@@ -16,7 +16,6 @@ public class RespawnOnInvisible : MonoBehaviour
 
     private void Awake()
     {
-        //Debug.Log(transform.childCount);
     }
 
     private void OnBecameInvisible()
