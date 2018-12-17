@@ -69,13 +69,22 @@ public class RewindTime : MonoBehaviour
         {
             GetComponent<Rigidbody2D>().isKinematic = intialKinematicState;
         }
+
+        if (selfAnimator)
+        {
+            selfAnimator.enabled = false;
+        }
     }
 
     private void Rewind()
     {
         if (pointsInTime.Count > 0)
         {
-            selfAnimator.enabled = false;
+            if (selfAnimator)
+            {
+                selfAnimator.StopPlayback();
+                selfAnimator.enabled = false;
+            }
             transform.position = pointsInTime[0].position;
             selfSpriteRenderer.sprite = pointsInTime[0].sprite;
             pointsInTime.RemoveAt(0);
