@@ -21,7 +21,7 @@ public class Scroll : MonoBehaviour
         if (speed == 0.0f)
             Debug.Log("Speed is set to 0 for " + gameObject.name);
 
-        transform.Translate(direction * speed * Time.deltaTime * GameManager.scrollMultiplier);
+        transform.Translate(direction * speed * Time.deltaTime * GameManager.scrollSpeedMultiplier);
     }
 
     private void OnValidate()

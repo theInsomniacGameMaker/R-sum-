@@ -9,7 +9,8 @@ public class RespawnOnInvisible : MonoBehaviour
 
     [SerializeField]
     private GameObject scroll;
-
+    [SerializeField]
+    private GameObject enemy;
 
     private Transform[] children;
 
@@ -29,6 +30,10 @@ public class RespawnOnInvisible : MonoBehaviour
                 if (SpawnManager.resetCount++ % 2 == 0)
                 {
                     Instantiate(scroll, (Vector2)(transform.GetChild(Random.Range(0, transform.childCount)).position), Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(enemy, new Vector2(transform.position.x, 6.0f), Quaternion.identity);
                 }
             }
         }

@@ -24,6 +24,8 @@ public class EnemyScript : MonoBehaviour
 
     private void Start()
     {
+        selfRigidBody.gravityScale = 0;
+
         PlayerScript.onPlayerDeath += PlayerKilled;
 
         if (Random.value > 0.5f)
@@ -44,10 +46,22 @@ public class EnemyScript : MonoBehaviour
 
         if (!isFalling)
         {
-            transform.Translate(direction * speed * Time.deltaTime * GameManager.scrollMultiplier);
+            transform.Translate(direction * speed * Time.deltaTime * GameManager.scrollSpeedMultiplier);
         }
 
-        Debug.Log("Speed = " + speed);
+        if (transform.position.x < 7.34)
+        {
+            selfRigidBody.gravityScale = 2;
+        }
+        else
+        {
+            transform.Translate(direction * 4 * Time.deltaTime);
+        }
+
+    }
+
+    private void OnBecameVisible()
+    {
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

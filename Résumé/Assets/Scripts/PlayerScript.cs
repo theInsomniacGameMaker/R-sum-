@@ -84,7 +84,7 @@ public class PlayerScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             isDead = true;
-            GameManager.scrollMultiplier = 0;
+            GameManager.scrollSpeedMultiplier = 0;
             if (onPlayerDeath!=null)
             {
                 onPlayerDeath();
