@@ -28,7 +28,7 @@ public class EnemyScript : MonoBehaviour
 
         PlayerScript.onPlayerDeath += PlayerKilled;
 
-        if (Random.value > 0.5f)
+        if (Random.value > 0.1f)
         {
             willCharge = true;
             speed = 6.0f;
@@ -58,6 +58,12 @@ public class EnemyScript : MonoBehaviour
             transform.Translate(direction * 4 * Time.deltaTime);
         }
 
+        if (transform.position.x <= -9.83f)
+        {
+            Destroy(gameObject);
+        }
+
+        Debug.Log("Will Charge: " + willCharge);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

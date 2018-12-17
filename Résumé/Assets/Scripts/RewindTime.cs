@@ -84,7 +84,7 @@ public class RewindTime : MonoBehaviour
     {
         if (rewindCount < MaxRewinds)
         {
-            if (pointsInTime.Count > 0)
+            if (pointsInTime.Count > 2)
             {
                 if (selfAnimator)
                 {
@@ -94,8 +94,9 @@ public class RewindTime : MonoBehaviour
                 transform.position = pointsInTime[0].position;
                 selfSpriteRenderer.sprite = pointsInTime[0].sprite;
                 pointsInTime.RemoveAt(0);
+                pointsInTime.RemoveAt(1);
             }
-            rewindCount++;
+            rewindCount+=2;
         }
         else
         {

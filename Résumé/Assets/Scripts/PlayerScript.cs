@@ -152,14 +152,15 @@ public class PlayerScript : MonoBehaviour
     private void DeathAnimationEnd()
     {
         Invoke("SendCallBack", 0.3f);
-    }
 
-    private void SendCallBack()
-    {
         if (onPlayerDeath != null)
         {
             onPlayerDeath();
         }
+    }
+
+    private void SendCallBack()
+    {
         isDead = false;
     }
 
