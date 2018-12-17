@@ -60,10 +60,6 @@ public class EnemyScript : MonoBehaviour
 
     }
 
-    private void OnBecameVisible()
-    {
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))

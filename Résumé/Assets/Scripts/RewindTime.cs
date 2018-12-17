@@ -16,8 +16,11 @@ public class RewindTime : MonoBehaviour
         }
     }
 
+    private const ushort MaxRewinds = 512;
+
     private bool isRewinding = false;
     private bool intialKinematicState = false;
+    private ushort rewindCount = 0;
     private List<PointInTime> pointsInTime = new List<PointInTime>();
     private SpriteRenderer selfSpriteRenderer;
     private Animator selfAnimator;
@@ -53,7 +56,7 @@ public class RewindTime : MonoBehaviour
     private void StartRewind()
     {
         isRewinding = true;
-
+        rewindCount = 0;
         if (GetComponent<Rigidbody2D>())
         {
             intialKinematicState = GetComponent<Rigidbody2D>().isKinematic;
@@ -64,6 +67,7 @@ public class RewindTime : MonoBehaviour
     private void StopRewind()
     {
         isRewinding = false;
+        rewindCount = 0;
 
         if (GetComponent<Rigidbody2D>())
         {
@@ -78,16 +82,20 @@ public class RewindTime : MonoBehaviour
 
     private void Rewind()
     {
-        if (pointsInTime.Count > 0)
+        if (rewindCount < MaxRewinds)
         {
-            if (selfAnimator)
+            if (pointsInTime.Count > 0)
             {
-                selfAnimator.StopPlayback();
-                selfAnimator.enabled = false;
+                if (selfAnimator)
+                {
+                    selfAnimator.StopPlayback();
+                    selfAnimator.enabled = false;
+                }
+                transform.position = pointsInTime[0].position;
+                selfSpriteRenderer.sprite = pointsInTime[0].sprite;
+                pointsInTime.RemoveAt(0);
             }
-            transform.position = pointsInTime[0].position;
-            selfSpriteRenderer.sprite = pointsInTime[0].sprite;
-            pointsInTime.RemoveAt(0);
+            rewindCount++;
         }
         else
         {
@@ -97,7 +105,7 @@ public class RewindTime : MonoBehaviour
 
     private void Record()
     {
-        if (pointsInTime.Count <= 640)
+        if (pointsInTime.Count <= MaxRewinds)
         {
             pointsInTime.Insert(0, new PointInTime(transform.position, selfSpriteRenderer.sprite));
         }
@@ -107,7 +115,5 @@ public class RewindTime : MonoBehaviour
     {
         PlayerScript.onPlayerDeath -= StartRewind;
     }
-
-
 }
 
