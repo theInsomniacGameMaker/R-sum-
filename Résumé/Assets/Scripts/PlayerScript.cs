@@ -92,8 +92,6 @@ public class PlayerScript : MonoBehaviour
             {
                 onPlayerDeath();
             }
-
-
         }
     }
 
