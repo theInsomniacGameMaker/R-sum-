@@ -33,7 +33,7 @@ public class RewindTime : MonoBehaviour
 
     private void Start()
     {
-        PlayerScript.onPlayerDeath += StartRewind;
+        PlayerScript.startRewind += StartRewind;
     }
 
     private void Update()
@@ -114,7 +114,7 @@ public class RewindTime : MonoBehaviour
 
     private void OnDisable()
     {
-        PlayerScript.onPlayerDeath -= StartRewind;
+        PlayerScript.startRewind -= StartRewind;
     }
 }
 

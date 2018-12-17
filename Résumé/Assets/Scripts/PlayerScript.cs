@@ -14,6 +14,7 @@ public class PlayerScript : MonoBehaviour
 
     public delegate void PlayerDeath();
     public static event PlayerDeath onPlayerDeath;
+    public static event PlayerDeath startRewind;
 
     [SerializeField]
     private float forceFactor;
@@ -86,7 +87,13 @@ public class PlayerScript : MonoBehaviour
         {
             isDead = true;
             GameManager.scrollSpeedMultiplier = 0;
-            
+
+            if (onPlayerDeath != null)
+            {
+                onPlayerDeath();
+            }
+
+
         }
     }
 
@@ -151,17 +158,18 @@ public class PlayerScript : MonoBehaviour
 
     private void DeathAnimationEnd()
     {
-        Invoke("SendCallBack", 0.3f);
 
-        if (onPlayerDeath != null)
-        {
-            onPlayerDeath();
-        }
+        Invoke("SendCallBack", 0.3f);
     }
 
     private void SendCallBack()
     {
         isDead = false;
+
+        if (startRewind != null)
+        {
+            startRewind();
+        }
     }
 
     private IEnumerator ResetTimeAfterDelay(float delay)
