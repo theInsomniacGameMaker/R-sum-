@@ -60,7 +60,7 @@ public class EnemyScript : MonoBehaviour
             transform.Translate(direction * 4 * Time.deltaTime);
         }
 
-        if (transform.position.x <= -9.83f)
+        if (transform.position.x <= -9.83f || transform.position.y < -4.0f)
         {
             Destroy(gameObject);
         }
