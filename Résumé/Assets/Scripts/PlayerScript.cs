@@ -37,6 +37,7 @@ public class PlayerScript : MonoBehaviour
     private void Start()
     {
         isDead = false;
+        GetComponent<RewindTime>().rewindCompleted += RewindCompleted;
     }
 
     private void Update()
@@ -71,7 +72,6 @@ public class PlayerScript : MonoBehaviour
         selfAnimator.SetBool("Slashing", isSlashing);
         selfAnimator.SetBool("Dead", isDead);
     }
-
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -156,7 +156,6 @@ public class PlayerScript : MonoBehaviour
 
     private void DeathAnimationEnd()
     {
-
         Invoke("SendCallBack", 0.3f);
     }
 
@@ -168,6 +167,18 @@ public class PlayerScript : MonoBehaviour
         {
             startRewind();
         }
+    }
+
+    private void RewindCompleted()
+    {
+        Invoke("DelayedRewindComplete",1.0f);
+    }
+
+    private void DelayedRewindComplete()
+    {
+        GameManager.scrollSpeedMultiplier = 1;
+        selfAnimator.enabled = true;
+        isDead = false;
     }
 
     private IEnumerator ResetTimeAfterDelay(float delay)

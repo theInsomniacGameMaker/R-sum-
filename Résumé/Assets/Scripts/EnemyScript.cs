@@ -6,6 +6,7 @@ public class EnemyScript : MonoBehaviour
 {
     private bool isFalling = true;
     private bool willCharge;
+    private bool willChargeHolder;
     private float speed;
     private Rigidbody2D selfRigidBody;
     private Animator selfAnimator;
@@ -27,6 +28,7 @@ public class EnemyScript : MonoBehaviour
         selfRigidBody.gravityScale = 0;
 
         PlayerScript.onPlayerDeath += PlayerKilled;
+        GetComponent<RewindTime>().rewindCompleted += RewindEnded;
 
         if (Random.value > 0.1f)
         {
@@ -83,11 +85,25 @@ public class EnemyScript : MonoBehaviour
 
     private void PlayerKilled()
     {
+        willChargeHolder = willCharge;
         willCharge = false;
+    }
+
+    private void RewindEnded()
+    {
+        Invoke("DelayedRewindCompleted", 1.0f);
+    }
+
+    private void DelayedRewindCompleted()
+    {
+        willCharge = willChargeHolder;
+        selfAnimator.enabled = true;
     }
 
     private void OnDisable()
     {
         PlayerScript.onPlayerDeath -= PlayerKilled;
+        GetComponent<RewindTime>().rewindCompleted -= RewindEnded;
+
     }
 }

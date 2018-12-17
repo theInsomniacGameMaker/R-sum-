@@ -16,7 +16,7 @@ public class RewindTime : MonoBehaviour
         }
     }
 
-    private const ushort MaxRewinds = 512;
+    private const ushort MaxRewinds = 256;
 
     private bool isRewinding = false;
     private bool intialKinematicState = false;
@@ -24,6 +24,9 @@ public class RewindTime : MonoBehaviour
     private List<PointInTime> pointsInTime = new List<PointInTime>();
     private SpriteRenderer selfSpriteRenderer;
     private Animator selfAnimator;
+
+    public delegate void RewindCompleted();
+    public event RewindCompleted rewindCompleted;
 
     private void Awake()
     {
@@ -52,7 +55,6 @@ public class RewindTime : MonoBehaviour
         }
     }
 
-
     private void StartRewind()
     {
         isRewinding = true;
@@ -74,9 +76,14 @@ public class RewindTime : MonoBehaviour
             GetComponent<Rigidbody2D>().isKinematic = intialKinematicState;
         }
 
-        if (selfAnimator)
+        //if (selfAnimator)
+        //{
+        //    selfAnimator.enabled = true;
+        //}
+
+        if (rewindCompleted != null)
         {
-            selfAnimator.enabled = false;
+            rewindCompleted();
         }
     }
 
@@ -84,7 +91,7 @@ public class RewindTime : MonoBehaviour
     {
         if (rewindCount < MaxRewinds)
         {
-            if (pointsInTime.Count > 2)
+            if (pointsInTime.Count > 4)
             {
                 if (selfAnimator)
                 {
@@ -95,8 +102,9 @@ public class RewindTime : MonoBehaviour
                 selfSpriteRenderer.sprite = pointsInTime[0].sprite;
                 pointsInTime.RemoveAt(0);
                 pointsInTime.RemoveAt(1);
+                pointsInTime.RemoveAt(2);
             }
-            rewindCount+=2;
+            rewindCount+=3;
         }
         else
         {
