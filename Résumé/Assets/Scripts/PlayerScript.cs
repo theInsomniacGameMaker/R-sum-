@@ -71,6 +71,7 @@ public class PlayerScript : MonoBehaviour
         selfAnimator.SetBool("Dead", isDead);
     }
 
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -85,10 +86,7 @@ public class PlayerScript : MonoBehaviour
         {
             isDead = true;
             GameManager.scrollSpeedMultiplier = 0;
-            if (onPlayerDeath!=null)
-            {
-                onPlayerDeath();
-            }
+            
         }
     }
 
@@ -149,6 +147,20 @@ public class PlayerScript : MonoBehaviour
                 enemy.transform.parent.SendMessage("TakeDamage");
             }
         }
+    }
+
+    private void DeathAnimationEnd()
+    {
+        Invoke("SendCallBack", 0.3f);
+    }
+
+    private void SendCallBack()
+    {
+        if (onPlayerDeath != null)
+        {
+            onPlayerDeath();
+        }
+        isDead = false;
     }
 
     private IEnumerator ResetTimeAfterDelay(float delay)

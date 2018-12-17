@@ -5,5 +5,4 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static byte scrollSpeedMultiplier = 1;
-
 }

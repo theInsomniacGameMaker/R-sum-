@@ -32,7 +32,7 @@ public class RespawnOnInvisible : MonoBehaviour
                 }
                 else
                 {
-                    Instantiate(enemy, new Vector2(transform.position.x, 6.0f), Quaternion.identity);
+                    Instantiate(enemy, new Vector2(transform.position.x + Random.Range(-0.75f, 0.75f), 6.0f), Quaternion.identity);
                 }
             }
         }
