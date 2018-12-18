@@ -45,7 +45,6 @@ public class SkillScript : MonoBehaviour
     private void OnDisable()
     {
         SkillPanelScript.onScrollCollected -= StartMoveToPostion;
-
     }
 
 }

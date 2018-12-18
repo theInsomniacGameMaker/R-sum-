@@ -65,7 +65,7 @@ public class EnemyScript : MonoBehaviour
             Destroy(gameObject);
         }
 
-        Debug.Log("Will Charge: " + willCharge);
+        //Debug.Log("Will Charge: " + willCharge);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

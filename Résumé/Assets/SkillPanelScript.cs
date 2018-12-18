@@ -8,8 +8,8 @@ public class SkillPanelScript : MonoBehaviour
     GameObject[] children;
     SkillScript[] childrenSkillScripts;
 
-    public delegate void Collected(Vector2 vector2);
-    public static event Collected onScrollCollected;
+    public delegate void AnimationComplete(Vector2 vector2);
+    public static event AnimationComplete onScrollCollected;
 
     private void Awake()
     {
@@ -19,23 +19,32 @@ public class SkillPanelScript : MonoBehaviour
     private void Start()
     {
         children = new GameObject[transform.childCount];
+        childrenSkillScripts = new SkillScript[transform.childCount];
 
         for (int i = 0; i < transform.childCount; i++)
         {
             children[i] = transform.GetChild(i).gameObject;
             childrenSkillScripts[i] = children[i].GetComponent<SkillScript>();
         }
+
+        PlayerScript.scrollCollected += MoveIn;
     }
 
     private void SkillAcquired()
     {
+        int count = 0;
         while (true)
         {
-           int randomIndex = Random.Range(0, transform.childCount);
+            int randomIndex = Random.Range(0, transform.childCount);
 
             if (HasBeenAcquired(randomIndex))
             {
-                CallMoveByForEveryChild(childrenSkillScripts[randomIndex].GetComponent<RectTransform>().localPosition);
+                CallMoveByForEveryChild(-(childrenSkillScripts[randomIndex].GetComponent<RectTransform>().localPosition));
+                break;
+            }
+
+            if (count++ >= transform.childCount)
+            {
                 break;
             }
         }
@@ -51,5 +60,19 @@ public class SkillPanelScript : MonoBehaviour
         onScrollCollected(moveBy);
     }
 
+    private void MoveIn()
+    {
+        selfAnimator.SetTrigger("In");
+        Debug.Log("In");
+    }
 
+    private void MoveOut()
+    {
+        selfAnimator.SetTrigger("Out");
+    }
+
+    private void SetIdle()
+    {
+        selfAnimator.SetTrigger("Idle"); 
+    }
 }

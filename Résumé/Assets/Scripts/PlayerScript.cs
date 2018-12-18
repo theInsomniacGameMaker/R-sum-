@@ -16,6 +16,10 @@ public class PlayerScript : MonoBehaviour
     public static event PlayerDeath onPlayerDeath;
     public static event PlayerDeath startRewind;
 
+    public delegate void ScrollCollected();
+    public static event ScrollCollected scrollCollected;
+
+
     [SerializeField]
     private float forceFactor;
 
@@ -111,6 +115,11 @@ public class PlayerScript : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Scroll"))
         {
+            //calling the event that goes to the panel
+            if (scrollCollected != null)
+            {
+                scrollCollected();
+            }
             StartCoroutine(ResetTimeAfterDelay(.3f));
             Instantiate(itemFeedback, collision.gameObject.transform.position, Quaternion.identity);
             Destroy(collision.gameObject);
