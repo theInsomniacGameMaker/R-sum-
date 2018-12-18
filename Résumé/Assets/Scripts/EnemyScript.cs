@@ -10,6 +10,7 @@ public class EnemyScript : MonoBehaviour
     private float speed;
     private Rigidbody2D selfRigidBody;
     private Animator selfAnimator;
+    private RewindTime selfRewindTime;
 
     [SerializeField]
     private Vector2 direction;
@@ -21,6 +22,7 @@ public class EnemyScript : MonoBehaviour
     {
         selfAnimator = GetComponent<Animator>();
         selfRigidBody = GetComponent<Rigidbody2D>();
+        selfRewindTime = GetComponent<RewindTime>();
     }
 
     private void Start()
@@ -60,12 +62,18 @@ public class EnemyScript : MonoBehaviour
             transform.Translate(direction * 4 * Time.deltaTime);
         }
 
-        if (transform.position.x <= -9.83f || transform.position.y < -4.0f)
+        if (transform.position.x <= -10.059f || transform.position.y < -4.0f)
         {
             Destroy(gameObject);
         }
 
-        //Debug.Log("Will Charge: " + willCharge);
+        if (selfRewindTime.IsRewinding())
+        {
+            if (transform.position.x > 10.059f)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -103,7 +111,6 @@ public class EnemyScript : MonoBehaviour
     private void OnDisable()
     {
         PlayerScript.onPlayerDeath -= PlayerKilled;
-        GetComponent<RewindTime>().rewindCompleted -= RewindEnded;
-
+        selfRewindTime.rewindCompleted -= RewindEnded;
     }
 }

@@ -17,7 +17,7 @@ public class CollectibleScrollScript : MonoBehaviour
     {
         selfRewindTime = GetComponent<RewindTime>();
     }
-    
+
     private void Start()
     {
         direction.Normalize();
@@ -30,25 +30,26 @@ public class CollectibleScrollScript : MonoBehaviour
 
         transform.Translate(direction * speed * Time.deltaTime * GameManager.scrollSpeedMultiplier);
 
-        if (transform.position.x < -9.014f)
+        if (transform.position.x < -9.335f)
         {
             Destroy(gameObject);
         }
 
-        
-    }
-
-    private void OnValidate()
-    {
-        speed = Mathf.Abs(speed);
-        direction.Normalize();
-    }
-
-    private void OnBecameInvisible()
-    {
         if (selfRewindTime.IsRewinding())
         {
-            Destroy(gameObject);
+            if (transform.position.x > 9.335f)
+            {
+                Destroy(gameObject);
+
+            }
         }
     }
-}
+
+        private void OnValidate()
+        {
+            speed = Mathf.Abs(speed);
+            direction.Normalize();
+        }
+
+
+    }
