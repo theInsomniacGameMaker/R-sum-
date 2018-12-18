@@ -124,5 +124,10 @@ public class RewindTime : MonoBehaviour
     {
         PlayerScript.startRewind -= StartRewind;
     }
+
+    public bool IsRewinding()
+    {
+        return isRewinding;
+    }
 }
 

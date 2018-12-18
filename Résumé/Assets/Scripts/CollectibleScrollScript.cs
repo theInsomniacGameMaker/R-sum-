@@ -10,6 +10,14 @@ public class CollectibleScrollScript : MonoBehaviour
     [SerializeField]
     private Vector2 direction;
 
+
+    RewindTime selfRewindTime;
+
+    private void Awake()
+    {
+        selfRewindTime = GetComponent<RewindTime>();
+    }
+    
     private void Start()
     {
         direction.Normalize();
@@ -26,11 +34,21 @@ public class CollectibleScrollScript : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        
     }
 
     private void OnValidate()
     {
         speed = Mathf.Abs(speed);
         direction.Normalize();
+    }
+
+    private void OnBecameInvisible()
+    {
+        if (selfRewindTime.IsRewinding())
+        {
+            Destroy(gameObject);
+        }
     }
 }
