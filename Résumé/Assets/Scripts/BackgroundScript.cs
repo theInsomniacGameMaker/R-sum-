@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RespawnOnInvisible : MonoBehaviour
+public class BackgroundScript : MonoBehaviour
 {
     [SerializeField]
     private Transform spawnPosition;
