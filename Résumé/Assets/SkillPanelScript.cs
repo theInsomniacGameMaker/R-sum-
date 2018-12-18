@@ -32,12 +32,13 @@ public class SkillPanelScript : MonoBehaviour
 
     private void SkillAcquired()
     {
+        Debug.Log("This Skill Acquiured function was called");
         int count = 0;
         while (true)
         {
             int randomIndex = Random.Range(0, transform.childCount);
 
-            if (HasBeenAcquired(randomIndex))
+            if (!HasBeenAcquired(randomIndex))
             {
                 CallMoveByForEveryChild(-(childrenSkillScripts[randomIndex].GetComponent<RectTransform>().localPosition));
                 break;
@@ -50,11 +51,13 @@ public class SkillPanelScript : MonoBehaviour
         }
     }
 
+    //is the skill already ben collected by the player
     private bool HasBeenAcquired(int i)
     {
         return childrenSkillScripts[i].HasBeenCollected();
     }
 
+    //this function sends a message to all of the children to move by a certain amount
     private void CallMoveByForEveryChild(Vector2 moveBy)
     {
         onScrollCollected(moveBy);
