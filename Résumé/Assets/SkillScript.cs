@@ -17,7 +17,15 @@ public class SkillScript : MonoBehaviour
         }
 
         startPostion = selfRectTransform.localPosition;
+        SkillPanelScript.onScrollCollected += StartMoveToPostion;
     }
+
+
+    private void StartMoveToPostion(Vector2 moveBy)
+    {
+        StartCoroutine(MoveToPosition(moveBy));
+    }
+
 
     private IEnumerator MoveToPosition(Vector2 moveBy)
     {
@@ -29,7 +37,15 @@ public class SkillScript : MonoBehaviour
         }
     }
 
-    
+    public bool HasBeenCollected()
+    {
+        return hasBeenCollected;
+    }
 
+    private void OnDisable()
+    {
+        SkillPanelScript.onScrollCollected -= StartMoveToPostion;
+
+    }
 
 }
