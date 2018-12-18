@@ -4,30 +4,15 @@ using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
-    public static CameraShake Instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
-
-    void Awake()
+    public void StartCameraShake(float magnitude, float duration)
     {
-        //Check if instance already exists
-        if (Instance == null)
-
-            //if not, set instance to this
-            Instance = this;
-
-        //If instance already exists and it's not this:
-        else if (Instance != this)
-
-            //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
-            Destroy(gameObject);
-
-        //Sets this to not be destroyed when reloading scene
-        DontDestroyOnLoad(gameObject);
+        StartCoroutine(ShakeCamera(magnitude, duration));
     }
 
-
-    public IEnumerator ShakeCamera(float magnitude, float duration)
+    private IEnumerator ShakeCamera(float magnitude, float duration)
     {
-        Vector3 originalPosition = transform.position;
+        Debug.Log("Camera Shake function called");
+        Vector3 originalPosition = transform.localPosition;
 
         float elapsedTime = 0.0f;
 
@@ -36,11 +21,12 @@ public class CameraShake : MonoBehaviour
             float x = Random.Range(-1.0f, 1.0f) * magnitude;
             float y = Random.Range(-1.0f, 1.0f) * magnitude;
 
-            transform.position = new Vector3(x, y, originalPosition.z);
+            transform.localPosition = new Vector3(x, y, originalPosition.z);
             elapsedTime += Time.deltaTime;
+            //Debug.Break();
             yield return null;
         }
 
-        transform.position = originalPosition;
+        transform.localPosition = originalPosition;
     }
 }

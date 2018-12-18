@@ -157,7 +157,6 @@ public class PlayerScript : MonoBehaviour
         {
             if (enemy.gameObject.CompareTag("Hitbox"))
             {
-                CameraShake.Instance.ShakeCamera(3,0.2f);
                 enemy.transform.parent.SendMessage("TakeDamage");
             }
         }

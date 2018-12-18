@@ -8,6 +8,12 @@ public class SkillScript : MonoBehaviour
     private bool hasBeenCollected;
     Vector2 startPostion;
     RectTransform selfRectTransform;
+    CameraShake mainCameraShake;
+
+    private void Awake()
+    {
+        mainCameraShake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>();
+    }
 
     private void Start()
     {
@@ -31,12 +37,13 @@ public class SkillScript : MonoBehaviour
     private IEnumerator MoveToPosition(Vector2 moveBy)
     {
         Vector2 desiredPosition = startPostion + moveBy;
-        while ((Vector2)selfRectTransform.localPosition != desiredPosition)
+        while ((Vector2)selfRectTransform.localPosition != Round(desiredPosition))
         {
             selfRectTransform.localPosition = Vector2.Lerp(selfRectTransform.localPosition, desiredPosition, Time.deltaTime * 2.0f);
             yield return null;
         }
         GetComponent<TextMeshProUGUI>().color = Color.red;
+        mainCameraShake.StartCameraShake(0.3f,.3f);
     }
 
     public bool HasBeenCollected()
@@ -44,9 +51,16 @@ public class SkillScript : MonoBehaviour
         return hasBeenCollected;
     }
 
+    private Vector2 Round(Vector2 vector2)
+    {
+        return new Vector2(Mathf.Round(vector2.x), Mathf.Round(vector2.y));
+    }
+
     private void OnDisable()
     {
         SkillPanelScript.onScrollCollected -= StartMoveToPostion;
     }
+
+
 
 }
