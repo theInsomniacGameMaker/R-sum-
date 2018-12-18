@@ -11,6 +11,8 @@ public class Scroll : MonoBehaviour
     [SerializeField]
     private Vector2 direction;
 
+  
+
     private void Start ()
     {
         direction.Normalize();

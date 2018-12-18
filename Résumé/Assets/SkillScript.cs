@@ -5,10 +5,13 @@ using TMPro;
 
 public class SkillScript : MonoBehaviour
 {
-    private bool hasBeenCollected;
+    private bool hasBeenCollected = false;
     Vector2 startPostion;
     RectTransform selfRectTransform;
     CameraShake mainCameraShake;
+
+    public delegate void MovementComplete();
+    public static event MovementComplete movementComplete;
 
     private void Awake()
     {
@@ -28,23 +31,26 @@ public class SkillScript : MonoBehaviour
         SkillPanelScript.onScrollCollected += StartMoveToPostion;
     }
 
+    //this fucntion is called by the events and delegate system
     private void StartMoveToPostion(Vector2 moveBy)
     {
-        Debug.Log("corotuine has started");
+        //Debug.Log("corotuine has started");
         StartCoroutine(MoveToPosition(moveBy));
     }
 
     private IEnumerator MoveToPosition(Vector2 moveBy)
     {
         Vector2 desiredPosition = startPostion + moveBy;
-        while ((Vector2)selfRectTransform.localPosition != Round(desiredPosition))
+        while (Round((Vector2)selfRectTransform.localPosition) != Round(desiredPosition))
         {
             selfRectTransform.localPosition = Vector2.Lerp(selfRectTransform.localPosition, desiredPosition, Time.deltaTime * 2.0f);
             yield return null;
         }
-        GetComponent<TextMeshProUGUI>().color = Color.red;
-        mainCameraShake.StartCameraShake(0.3f,.3f);
-        hasBeenCollected = true;
+
+        if (movementComplete != null)
+        {
+            movementComplete();
+        }
     }
 
     public bool HasBeenCollected()
@@ -55,6 +61,13 @@ public class SkillScript : MonoBehaviour
     private Vector2 Round(Vector2 vector2)
     {
         return new Vector2(Mathf.Round(vector2.x), Mathf.Round(vector2.y));
+    }
+
+    public void SetToCollected()
+    {
+        GetComponent<TextMeshProUGUI>().color = Color.red;
+        mainCameraShake.StartCameraShake(0.3f, .3f);
+        hasBeenCollected = true;
     }
 
     private void OnDisable()

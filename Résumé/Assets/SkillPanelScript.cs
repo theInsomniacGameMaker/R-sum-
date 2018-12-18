@@ -11,6 +11,8 @@ public class SkillPanelScript : MonoBehaviour
     public delegate void AnimationComplete(Vector2 vector2);
     public static event AnimationComplete onScrollCollected;
 
+    int currentSkillAcquired;
+
     private void Awake()
     {
         selfAnimator = GetComponent<Animator>();
@@ -28,19 +30,20 @@ public class SkillPanelScript : MonoBehaviour
         }
 
         PlayerScript.scrollCollected += MoveIn;
+        SkillScript.movementComplete += HilightSkill;
     }
 
     private void SkillAcquired()
     {
-        Debug.Log("This Skill Acquiured function was called");
+        //Debug.Log("This Skill Acquiured function was called");
         int count = 0;
         while (true)
         {
-            int randomIndex = Random.Range(0, transform.childCount);
+            currentSkillAcquired = Random.Range(0, transform.childCount);
 
-            if (!HasBeenAcquired(randomIndex))
+            if (!HasBeenAcquired(currentSkillAcquired))
             {
-                CallMoveByForEveryChild(-(childrenSkillScripts[randomIndex].GetComponent<RectTransform>().localPosition));
+                CallMoveByForEveryChild(-(childrenSkillScripts[currentSkillAcquired].GetComponent<RectTransform>().localPosition));
                 break;
             }
 
@@ -66,7 +69,7 @@ public class SkillPanelScript : MonoBehaviour
     private void MoveIn()
     {
         selfAnimator.SetTrigger("In");
-        Debug.Log("In");
+        //Debug.Log("In");
     }
 
     private void MoveOut()
@@ -78,4 +81,20 @@ public class SkillPanelScript : MonoBehaviour
     {
         selfAnimator.SetTrigger("Idle"); 
     }
+
+    private void HilightSkill()
+    {
+        childrenSkillScripts[currentSkillAcquired].SetToCollected();
+        Invoke("MoveOut", 0.3f);
+    }
+
+    
+
+    private void OnDisable()
+    {
+        PlayerScript.scrollCollected -= MoveIn;
+        SkillScript.movementComplete -= HilightSkill; 
+    }
+
+    
 }
