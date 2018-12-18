@@ -44,6 +44,7 @@ public class SkillScript : MonoBehaviour
         }
         GetComponent<TextMeshProUGUI>().color = Color.red;
         mainCameraShake.StartCameraShake(0.3f,.3f);
+        hasBeenCollected = true;
     }
 
     public bool HasBeenCollected()
