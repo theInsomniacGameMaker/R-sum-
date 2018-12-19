@@ -63,17 +63,32 @@ public class PlayerScript : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.UpArrow) && !isOnGround)
             {
-                isOnGround = true;
+                JumpInput();
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow) && !isRolling)
             {
-                isRolling = true;
+                Roll();
             }
             else if (Input.GetKeyDown(KeyCode.Space) && !isSlashing)
             {
-                isSlashing = true;
+                Slash();
             }
         }
+    }
+
+    private void JumpInput()
+    {
+        isOnGround = true;
+    }
+
+    private void Roll()
+    {
+        isRolling = true;
+    }
+
+    private void Slash()
+    {
+        isSlashing = true;
     }
 
     private void AnimatorUpdate()
@@ -215,6 +230,4 @@ public class PlayerScript : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPosition.position, attackRange);
     }
-
-
 }
