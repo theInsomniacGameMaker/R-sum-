@@ -56,20 +56,24 @@ public class SkillPanelScript : MonoBehaviour
     private void SkillAcquired()
     {
         //Debug.Log("This Skill Acquiured function was called");
-        int count = 0;
-        while (true)
+
+        if (globalCounter < transform.childCount)
         {
-            currentSkillAcquired = indicesToFollow[globalCounter++];
-
-            if (!HasBeenAcquired(currentSkillAcquired))
+            int count = 0;
+            while (true)
             {
-                CallMoveByForEveryChild(-(childrenSkillScripts[currentSkillAcquired].GetComponent<RectTransform>().localPosition));
-                break;
-            }
+                currentSkillAcquired = indicesToFollow[globalCounter++];
 
-            if (count++ >= transform.childCount)
-            {
-                break;
+                if (!HasBeenAcquired(currentSkillAcquired))
+                {
+                    CallMoveByForEveryChild(-(childrenSkillScripts[currentSkillAcquired].GetComponent<RectTransform>().localPosition));
+                    break;
+                }
+
+                if (count++ >= transform.childCount)
+                {
+                    break;
+                }
             }
         }
     }

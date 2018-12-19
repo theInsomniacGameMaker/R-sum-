@@ -50,9 +50,8 @@ public class RespawnOnInvisible : MonoBehaviour
 
                 if (gameObject.name == "Foreground")
                 {
-                    if (!selfRewindTime.IsRewinding())
+                    if (!selfRewindTime.IsRewinding() && GameManager.tutorialOver)
                     {
-
                         switch (SpawnManager.resetCount++ % 3)
                         {
                             case 0:

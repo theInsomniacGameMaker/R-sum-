@@ -20,7 +20,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
-        Debug.Log("Starting Conversation with " + dialogue.name);
+        //Debug.Log("Starting Conversation with " + dialogue.name);
         dialogueBoxAnimator.SetBool("Open", true);
         sentences.Clear();
 
@@ -52,12 +52,13 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in sentence.ToCharArray())
         {
             text.text += letter.ToString();
-            yield return null;
+            yield return new WaitForSeconds(0.01f);
         }
     }
 
     private void EndDialogue()
     {
+        GameManager.tutorialOver = true;
         dialogueBoxAnimator.SetBool("Open", false);
     }
 }

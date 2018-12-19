@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static byte scrollSpeedMultiplier = 1;
+    public static bool tutorialOver = false;
 
     [SerializeField]
     private GameObject skillRetrievedText;
