@@ -16,6 +16,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField]
     private AudioClip keyStroke;
 
+  
 
     private void Start()
     {
@@ -67,4 +68,6 @@ public class DialogueManager : MonoBehaviour
         GameManager.tutorialOver = true;
         dialogueBoxAnimator.SetBool("Open", false);
     }
+
+
 }
