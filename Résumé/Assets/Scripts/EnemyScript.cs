@@ -32,7 +32,7 @@ public class EnemyScript : MonoBehaviour
         PlayerScript.onPlayerDeath += PlayerKilled;
         GetComponent<RewindTime>().rewindCompleted += RewindEnded;
 
-        if (Random.value > 0.1f)
+        if (Random.value > 0.5f)
         {
             willCharge = true;
             speed = 6.0f;
@@ -81,6 +81,11 @@ public class EnemyScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isFalling = false;
+        }
+
+        if (collision.gameObject.CompareTag("Enemy Bubble") && transform.GetChild(1) != collision.gameObject)
+        {
+            willCharge = false;
         }
     }
 
