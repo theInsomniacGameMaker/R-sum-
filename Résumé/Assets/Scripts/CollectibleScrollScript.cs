@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +11,6 @@ public class CollectibleScrollScript : MonoBehaviour
     [SerializeField]
     private Vector2 direction;
 
-
     RewindTime selfRewindTime;
 
     private void Awake()
@@ -21,6 +21,7 @@ public class CollectibleScrollScript : MonoBehaviour
     private void Start()
     {
         direction.Normalize();
+        selfRewindTime.rewindCompleted += StartAnimator;
     }
 
     private void Update()
@@ -51,5 +52,13 @@ public class CollectibleScrollScript : MonoBehaviour
         direction.Normalize();
     }
 
+    private void StartAnimator()
+    {
+        GetComponent<Animator>().enabled = true;
+    }
 
+    private void OnDisable()
+    {
+        selfRewindTime.rewindCompleted -= StartAnimator;
+    }
 }
