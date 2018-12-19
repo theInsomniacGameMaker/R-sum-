@@ -16,13 +16,6 @@ public class SkillRetrievedTextScript : MonoBehaviour
     {
         selfRectTransform = GetComponent<RectTransform>();
     }
-
-    private void Update()
-    { 
-
-       
-    }
-
    
     private void Disable()
     {

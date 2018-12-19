@@ -40,10 +40,9 @@ public class CollectibleScrollScript : MonoBehaviour
 
         if (selfRewindTime.IsRewinding())
         {
-            if (transform.position.x > 17.335f)
+            if (transform.position.x > 18.0f)
             {
                 Destroy(gameObject);
-
             }
         }
     }

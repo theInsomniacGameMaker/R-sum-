@@ -75,12 +75,8 @@ public class RewindTime : MonoBehaviour
         {
             GetComponent<Rigidbody2D>().isKinematic = intialKinematicState;
         }
-
-        //if (selfAnimator)
-        //{
-        //    selfAnimator.enabled = true;
-        //}
-
+        pointsInTime.Clear();
+      
         if (rewindCompleted != null)
         {
             rewindCompleted();
@@ -91,7 +87,7 @@ public class RewindTime : MonoBehaviour
     {
         if (rewindCount < MaxRewinds)
         {
-            if (pointsInTime.Count > 4)
+            if (pointsInTime.Count > 2)
             {
                 if (selfAnimator)
                 {
@@ -102,9 +98,8 @@ public class RewindTime : MonoBehaviour
                 selfSpriteRenderer.sprite = pointsInTime[0].sprite;
                 pointsInTime.RemoveAt(0);
                 pointsInTime.RemoveAt(1);
-                pointsInTime.RemoveAt(2);
             }
-            rewindCount+=3;
+            rewindCount+=2;
         }
         else
         {
@@ -114,9 +109,11 @@ public class RewindTime : MonoBehaviour
 
     private void Record()
     {
-        if (pointsInTime.Count <= MaxRewinds)
+
+        pointsInTime.Insert(0, new PointInTime(transform.position, selfSpriteRenderer.sprite));
+        if (pointsInTime.Count>MaxRewinds)
         {
-            pointsInTime.Insert(0, new PointInTime(transform.position, selfSpriteRenderer.sprite));
+            pointsInTime.RemoveAt(pointsInTime.Count - 1);
         }
     }
 

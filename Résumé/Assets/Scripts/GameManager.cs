@@ -17,9 +17,8 @@ public class GameManager : MonoBehaviour
 
     private void ShowText()
     {
-        Debug.Log("This was called");
         skillRetrievedText.SetActive(true);
-        //Debug.Break();
+
         skillRetrievedText.GetComponent<Animator>().SetTrigger("Up");
     }
 }

@@ -43,7 +43,7 @@ public class SkillScript : MonoBehaviour
         Vector2 desiredPosition = startPostion + moveBy;
         while (Round((Vector2)selfRectTransform.localPosition) != Round(desiredPosition))
         {
-            selfRectTransform.localPosition = Coserp(selfRectTransform.localPosition, desiredPosition, Time.deltaTime * 15.0f);
+            selfRectTransform.localPosition = Coserp(selfRectTransform.localPosition, desiredPosition, Time.deltaTime * 17.0f);
             yield return null;
         }
 

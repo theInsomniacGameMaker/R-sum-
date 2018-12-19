@@ -59,7 +59,11 @@ public class EnemyScript : MonoBehaviour
         }
         else
         {
-            transform.Translate(direction * 4 * Time.deltaTime);
+            if (!selfRewindTime.IsRewinding())
+                transform.Translate(direction * 4 * Time.deltaTime);
+
+            selfRigidBody.gravityScale = 0;
+
         }
 
         if (transform.position.x <= -10.059f || transform.position.y < -4.0f)
@@ -69,7 +73,7 @@ public class EnemyScript : MonoBehaviour
 
         if (selfRewindTime.IsRewinding())
         {
-            if (transform.position.x > 17.059f)
+            if (transform.position.x > 18.0f)
             {
                 Destroy(gameObject);
             }
@@ -83,10 +87,16 @@ public class EnemyScript : MonoBehaviour
             isFalling = false;
         }
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
         if (collision.gameObject.CompareTag("Enemy Bubble") && transform.GetChild(1) != collision.gameObject)
         {
+            speed = 4.0f;
             willCharge = false;
         }
+        
     }
 
     public void TakeDamage()
