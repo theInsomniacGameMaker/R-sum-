@@ -67,26 +67,26 @@ public class PlayerScript : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow) && !isRolling)
             {
-                Roll();
+                RollInput();
             }
             else if (Input.GetKeyDown(KeyCode.Space) && !isSlashing)
             {
-                Slash();
+                SlashInput();
             }
         }
     }
 
-    private void JumpInput()
+    public void JumpInput()
     {
         isOnGround = true;
     }
 
-    private void Roll()
+    public void RollInput()
     {
         isRolling = true;
     }
 
-    private void Slash()
+    public void SlashInput()
     {
         isSlashing = true;
     }
