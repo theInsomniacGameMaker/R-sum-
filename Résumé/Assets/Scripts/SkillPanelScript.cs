@@ -7,11 +7,13 @@ public class SkillPanelScript : MonoBehaviour
     Animator selfAnimator;
     GameObject[] children;
     SkillScript[] childrenSkillScripts;
+    List <int> indicesToFollow = new List<int>();
 
     public delegate void InAnimationComplete(Vector2 vector2);
     public static event InAnimationComplete onScrollCollected;
 
     int currentSkillAcquired;
+    int globalCounter =0;
 
     private void Awake()
     {
@@ -29,6 +31,24 @@ public class SkillPanelScript : MonoBehaviour
             childrenSkillScripts[i] = children[i].GetComponent<SkillScript>();
         }
 
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            int numberToFillIn = Random.Range(0, transform.childCount);
+            bool canfill = true;
+            for (int j = 0; j < indicesToFollow.Count; j++)
+            {
+                if (numberToFillIn == indicesToFollow[j])
+                {
+                    canfill = false;
+                    break;
+                }
+            }
+            if (canfill)
+            {
+                indicesToFollow.Add(numberToFillIn);
+            }
+        }
+
         PlayerScript.scrollCollected += MoveIn;
         SkillScript.movementComplete += HilightSkill;
     }
@@ -39,7 +59,7 @@ public class SkillPanelScript : MonoBehaviour
         int count = 0;
         while (true)
         {
-            currentSkillAcquired = Random.Range(0, transform.childCount);
+            currentSkillAcquired = indicesToFollow[globalCounter++];
 
             if (!HasBeenAcquired(currentSkillAcquired))
             {

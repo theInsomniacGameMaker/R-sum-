@@ -43,7 +43,7 @@ public class SkillScript : MonoBehaviour
         Vector2 desiredPosition = startPostion + moveBy;
         while (Round((Vector2)selfRectTransform.localPosition) != Round(desiredPosition))
         {
-            selfRectTransform.localPosition = Vector2.Lerp(selfRectTransform.localPosition, desiredPosition, Time.deltaTime * 4.0f);
+            selfRectTransform.localPosition = Coserp(selfRectTransform.localPosition, desiredPosition, Time.deltaTime * 15.0f);
             yield return null;
         }
 
@@ -75,8 +75,28 @@ public class SkillScript : MonoBehaviour
         selfRectTransform.localPosition = startPostion;
     }
 
+    private float GetSmoothStepTime(float t)
+    {
+        t = t * t * (3f - 2f * t);
+        return t;
+    }
+
     private void OnDisable()
     {
         SkillPanelScript.onScrollCollected -= StartMoveToPostion;
     }
+
+  
+
+    public  float Coserp(float start, float end, float value)
+    {
+        return Mathf.Lerp(start, end, 1.0f - Mathf.Cos(value * Mathf.PI * 0.5f));
+    }
+
+    public  Vector2 Coserp(Vector2 start, Vector2 end, float value)
+    {
+        return new Vector2(Coserp(start.x, end.x, value), Coserp(start.y, end.y, value));
+    }
+
+
 }
