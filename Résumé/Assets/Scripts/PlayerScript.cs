@@ -201,7 +201,7 @@ public class PlayerScript : MonoBehaviour
             if (enemy.gameObject.CompareTag("Hitbox"))
             {
                 enemy.transform.parent.SendMessage("TakeDamage");
-                AudioSource.PlayClipAtPoint(enemyDeath, Vector2.zero);
+                AudioSource.PlayClipAtPoint(enemyDeath, Vector2.zero,10.0f);
             }
         }
     }
