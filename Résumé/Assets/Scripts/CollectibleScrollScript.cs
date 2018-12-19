@@ -11,9 +11,8 @@ public class CollectibleScrollScript : MonoBehaviour
     [SerializeField]
     private Vector2 direction;
 
-    private SkillRetrievedTextScript textScript;
 
-    RewindTime selfRewindTime;
+    private RewindTime selfRewindTime;
 
     private void Awake()
     {
@@ -25,7 +24,6 @@ public class CollectibleScrollScript : MonoBehaviour
         direction.Normalize();
         selfRewindTime.rewindCompleted += StartAnimator;
 
-        textScript = GameObject.Find("SkillRetrievedText").gameObject.GetComponent<SkillRetrievedTextScript>();
     }
 
     private void Update()
@@ -52,11 +50,7 @@ public class CollectibleScrollScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            textScript.gameObject.SetActive(true);
-            textScript.SetPosition(Vector2.zero);
-        }            
+        
     }
 
     private void OnValidate()
