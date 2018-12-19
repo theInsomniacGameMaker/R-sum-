@@ -12,9 +12,6 @@ public class PlayerScript : MonoBehaviour
     private Rigidbody2D selfRigidBody;
     private Animator selfAnimator;
 
-    [SerializeField]
-    private Sprite falling;
-
     public delegate void PlayerDeath();
     public static event PlayerDeath onPlayerDeath;
     public static event PlayerDeath startRewind;
@@ -25,7 +22,8 @@ public class PlayerScript : MonoBehaviour
     public delegate void NormalGameStarted();
     public static event NormalGameStarted normalGameStarted;
 
-
+    [SerializeField]
+    private AudioClip blade;
 
     [SerializeField]
     private float forceFactor;
@@ -89,6 +87,7 @@ public class PlayerScript : MonoBehaviour
     public void SlashInput()
     {
         isSlashing = true;
+        AudioSource.PlayClipAtPoint(blade, Vector2.zero);
     }
 
     private void AnimatorUpdate()
