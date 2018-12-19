@@ -29,6 +29,9 @@ public class PlayerScript : MonoBehaviour
     private AudioClip enemyDeath;
 
     [SerializeField]
+    private AudioClip scrollCollect;
+
+    [SerializeField]
     private float forceFactor;
 
     [SerializeField]
@@ -149,6 +152,7 @@ public class PlayerScript : MonoBehaviour
             }
             StartCoroutine(ResetTimeAfterDelay(.3f));
             Instantiate(itemFeedback, collision.gameObject.transform.position, Quaternion.identity);
+            AudioSource.PlayClipAtPoint(scrollCollect, Vector2.zero);
             Destroy(collision.gameObject);
         }
     }
