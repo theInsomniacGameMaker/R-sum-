@@ -69,9 +69,9 @@ public class EnemyScript : MonoBehaviour
 
         if (selfRewindTime.IsRewinding())
         {
-            if (transform.position.x > 10.059f)
+            if (transform.position.x > 17.059f)
             {
-                //Destroy(gameObject);
+                Destroy(gameObject);
             }
         }
     }

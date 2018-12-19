@@ -52,14 +52,21 @@ public class RespawnOnInvisible : MonoBehaviour
                 {
                     if (!selfRewindTime.IsRewinding())
                     {
-                        SpawnManager.resetCount++;
-                        if (SpawnManager.resetCount % 4 == 1)
+
+                        switch (SpawnManager.resetCount++ % 4)
                         {
-                            Instantiate(scroll, (Vector2)(transform.GetChild(Random.Range(0, transform.childCount)).position), Quaternion.identity);
-                        }
-                        else if (SpawnManager.resetCount % 4 == 2 || SpawnManager.resetCount % 4 == 3)
-                        {
-                            Instantiate(enemy, new Vector2(transform.position.x + Random.Range(-1.0f, 1.0f), 6.0f), Quaternion.identity);
+                            case 0:
+                                Instantiate(enemy, new Vector2(transform.position.x + Random.Range(-1.0f, 1.0f), 6.0f), Quaternion.identity);
+                                break;
+                            case 1:
+                                Instantiate(scroll, (Vector2)(transform.GetChild(Random.Range(0, transform.childCount)).position), Quaternion.identity);
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                Instantiate(enemy, new Vector2(transform.position.x + Random.Range(-1.0f, 1.0f), 6.0f), Quaternion.identity);
+                                break;
+
                         }
                     }
                 }
