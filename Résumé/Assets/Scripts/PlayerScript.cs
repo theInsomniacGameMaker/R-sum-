@@ -26,6 +26,9 @@ public class PlayerScript : MonoBehaviour
     private AudioClip blade;
 
     [SerializeField]
+    private AudioClip enemyDeath;
+
+    [SerializeField]
     private float forceFactor;
 
     [SerializeField]
@@ -36,6 +39,8 @@ public class PlayerScript : MonoBehaviour
 
     [SerializeField]
     private GameObject itemFeedback;
+
+
 
     private void Awake()
     {
@@ -117,6 +122,7 @@ public class PlayerScript : MonoBehaviour
             {
                 onPlayerDeath();
             }
+
         }
     }
 
@@ -179,8 +185,16 @@ public class PlayerScript : MonoBehaviour
             if (enemy.gameObject.CompareTag("Hitbox"))
             {
                 enemy.transform.parent.SendMessage("TakeDamage");
+                AudioSource.PlayClipAtPoint(enemyDeath, Vector2.zero);
             }
         }
+    }
+
+    private void DeathAnimationStart()
+    {
+        isOnGround = true;
+        isRolling = false;
+        isSlashing = false;
     }
 
     private void DeathAnimationEnd()
@@ -229,4 +243,6 @@ public class PlayerScript : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPosition.position, attackRange);
     }
+
+    
 }

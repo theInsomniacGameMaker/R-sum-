@@ -5,6 +5,10 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     private OLDTVFilter3 filter;
+
+    [SerializeField]
+    private AudioSource rewindSFX;
+
     private void Awake()
     {
         filter = GetComponent<OLDTVFilter3>();
@@ -19,12 +23,15 @@ public class CameraScript : MonoBehaviour
 
     private void SwitchOnFilter()
     {
+        rewindSFX.pitch = 1.5f;
         filter.enabled = true;
+        rewindSFX.Play();
     }
 
     private void SwitchOffFilter()
     {
         filter.enabled = false;
+        rewindSFX.Stop();
     }
 
     private void OnDisable()
