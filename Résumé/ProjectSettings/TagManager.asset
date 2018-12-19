@@ -9,6 +9,7 @@ TagManager:
   - SlowDownTime
   - Enemy
   - Hitbox
+  - SkillRetrievedText
   layers:
   - Default
   - TransparentFX
