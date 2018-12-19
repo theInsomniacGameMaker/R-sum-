@@ -65,7 +65,7 @@ public class SkillScript : MonoBehaviour
 
     public void SetToCollected()
     {
-        GetComponent<TextMeshProUGUI>().color = Color.red;
+        GetComponent<TextMeshProUGUI>().color = new Color32(217, 130, 30, 255);
         mainCameraShake.StartCameraShake(0.25f, .3f);
         hasBeenCollected = true;
     }
@@ -86,14 +86,14 @@ public class SkillScript : MonoBehaviour
         SkillPanelScript.onScrollCollected -= StartMoveToPostion;
     }
 
-  
 
-    public  float Coserp(float start, float end, float value)
+
+    public float Coserp(float start, float end, float value)
     {
         return Mathf.Lerp(start, end, 1.0f - Mathf.Cos(value * Mathf.PI * 0.5f));
     }
 
-    public  Vector2 Coserp(Vector2 start, Vector2 end, float value)
+    public Vector2 Coserp(Vector2 start, Vector2 end, float value)
     {
         return new Vector2(Coserp(start.x, end.x, value), Coserp(start.y, end.y, value));
     }
