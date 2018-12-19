@@ -16,17 +16,17 @@ public class DialogueTrigger : MonoBehaviour
         }
         else
         {
-            Debug.Log("Is not null");
+            //Debug.Log("Is not null");
         }
 
-        Debug.Log(dialogueManager.gameObject.name);
+        //Debug.Log(dialogueManager.gameObject.name);
     }
 
     public void TriggerDialogue()
     {
         if (dialogue == null)
         {
-            Debug.Log("the Dialogue class is null");
+            //Debug.Log("the Dialogue class is null");
         }
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
     }
