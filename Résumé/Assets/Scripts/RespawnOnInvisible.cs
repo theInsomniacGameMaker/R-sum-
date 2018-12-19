@@ -37,9 +37,8 @@ public class RespawnOnInvisible : MonoBehaviour
             Debug.Log("Postion X to reset at " + transform.position.x);
             Debug.Break();
         }
-       
-    }
 
+    }
 
     private void ResetPostion()
     {
@@ -53,13 +52,14 @@ public class RespawnOnInvisible : MonoBehaviour
                 {
                     if (!selfRewindTime.IsRewinding())
                     {
-                        if (SpawnManager.resetCount++ % 2 == 0)
+                        SpawnManager.resetCount++;
+                        if (SpawnManager.resetCount % 4 == 1)
                         {
                             Instantiate(scroll, (Vector2)(transform.GetChild(Random.Range(0, transform.childCount)).position), Quaternion.identity);
                         }
-                        else
+                        else if (SpawnManager.resetCount % 4 == 2 || SpawnManager.resetCount % 4 == 3)
                         {
-                            Instantiate(enemy, new Vector2(transform.position.x + Random.Range(-0.75f, 0.75f), 6.0f), Quaternion.identity);
+                            Instantiate(enemy, new Vector2(transform.position.x + Random.Range(-1.0f, 1.0f), 6.0f), Quaternion.identity);
                         }
                     }
                 }

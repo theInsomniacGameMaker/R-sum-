@@ -71,7 +71,7 @@ public class EnemyScript : MonoBehaviour
         {
             if (transform.position.x > 10.059f)
             {
-                Destroy(gameObject);
+                //Destroy(gameObject);
             }
         }
     }

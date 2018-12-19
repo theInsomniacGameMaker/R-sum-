@@ -8,8 +8,8 @@ public class SkillPanelScript : MonoBehaviour
     GameObject[] children;
     SkillScript[] childrenSkillScripts;
 
-    public delegate void AnimationComplete(Vector2 vector2);
-    public static event AnimationComplete onScrollCollected;
+    public delegate void InAnimationComplete(Vector2 vector2);
+    public static event InAnimationComplete onScrollCollected;
 
     int currentSkillAcquired;
 
@@ -69,7 +69,6 @@ public class SkillPanelScript : MonoBehaviour
     private void MoveIn()
     {
         selfAnimator.SetTrigger("In");
-        //Debug.Log("In");
     }
 
     private void MoveOut()
@@ -79,7 +78,8 @@ public class SkillPanelScript : MonoBehaviour
 
     private void SetIdle()
     {
-        selfAnimator.SetTrigger("Idle"); 
+        selfAnimator.SetTrigger("Idle");
+        SetAllToOriginalPosition();
     }
 
     private void HilightSkill()
@@ -88,12 +88,18 @@ public class SkillPanelScript : MonoBehaviour
         Invoke("MoveOut", 0.3f);
     }
 
-    
-
     private void OnDisable()
     {
         PlayerScript.scrollCollected -= MoveIn;
         SkillScript.movementComplete -= HilightSkill; 
+    }
+
+    private void SetAllToOriginalPosition()
+    {
+        foreach (SkillScript skill in childrenSkillScripts)
+        {
+            skill.SetToOriginalPosition();
+        }
     }
 
     

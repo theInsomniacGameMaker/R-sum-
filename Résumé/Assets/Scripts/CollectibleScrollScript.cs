@@ -39,17 +39,17 @@ public class CollectibleScrollScript : MonoBehaviour
         {
             if (transform.position.x > 9.335f)
             {
-                Destroy(gameObject);
+                //Destroy(gameObject);
 
             }
         }
     }
 
-        private void OnValidate()
-        {
-            speed = Mathf.Abs(speed);
-            direction.Normalize();
-        }
-
-
+    private void OnValidate()
+    {
+        speed = Mathf.Abs(speed);
+        direction.Normalize();
     }
+
+
+}

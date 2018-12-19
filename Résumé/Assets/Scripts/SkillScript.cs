@@ -43,7 +43,7 @@ public class SkillScript : MonoBehaviour
         Vector2 desiredPosition = startPostion + moveBy;
         while (Round((Vector2)selfRectTransform.localPosition) != Round(desiredPosition))
         {
-            selfRectTransform.localPosition = Vector2.Lerp(selfRectTransform.localPosition, desiredPosition, Time.deltaTime * 2.0f);
+            selfRectTransform.localPosition = Vector2.Lerp(selfRectTransform.localPosition, desiredPosition, Time.deltaTime * 4.0f);
             yield return null;
         }
 
@@ -66,15 +66,17 @@ public class SkillScript : MonoBehaviour
     public void SetToCollected()
     {
         GetComponent<TextMeshProUGUI>().color = Color.red;
-        mainCameraShake.StartCameraShake(0.3f, .3f);
+        mainCameraShake.StartCameraShake(0.25f, .3f);
         hasBeenCollected = true;
+    }
+
+    public void SetToOriginalPosition()
+    {
+        selfRectTransform.localPosition = startPostion;
     }
 
     private void OnDisable()
     {
         SkillPanelScript.onScrollCollected -= StartMoveToPostion;
     }
-
-
-
 }

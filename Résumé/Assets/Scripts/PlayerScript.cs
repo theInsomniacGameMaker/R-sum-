@@ -12,6 +12,9 @@ public class PlayerScript : MonoBehaviour
     private Rigidbody2D selfRigidBody;
     private Animator selfAnimator;
 
+    [SerializeField]
+    private Sprite falling;
+
     public delegate void PlayerDeath();
     public static event PlayerDeath onPlayerDeath;
     public static event PlayerDeath startRewind;
@@ -179,7 +182,7 @@ public class PlayerScript : MonoBehaviour
 
     private void RewindCompleted()
     {
-        Invoke("DelayedRewindComplete",1.0f);
+        Invoke("DelayedRewindComplete", 1.0f);
     }
 
     private void DelayedRewindComplete()
@@ -197,7 +200,7 @@ public class PlayerScript : MonoBehaviour
 
         foreach (SpriteRenderer obj in darkenObjects)
         {
-            if (obj.gameObject != gameObject )
+            if (obj.gameObject != gameObject)
                 obj.color = Color.white;
         }
     }
@@ -207,4 +210,6 @@ public class PlayerScript : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPosition.position, attackRange);
     }
+
+
 }
