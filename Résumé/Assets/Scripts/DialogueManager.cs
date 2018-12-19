@@ -2,22 +2,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
-    private Queue<string> sentences;
+    private Queue<string> sentences = new Queue<string>();
+    [SerializeField]
+    private Animator dialogueBoxAnimator;
+
+    [SerializeField]
+    private TextMeshProUGUI text;
+
 
     private void Start()
     {
-        sentences = new Queue<string>();
     }
 
     public void StartDialogue(Dialogue dialogue)
     {
         Debug.Log("Starting Conversation with " + dialogue.name);
+        dialogueBoxAnimator.SetBool("Open", true);
         sentences.Clear();
 
-        foreach (string sentence in sentences)
+        foreach (string sentence in dialogue.sentences)
         {
             sentences.Enqueue(sentence);
         }
@@ -27,7 +34,7 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
-        if (sentences.Count ==0)
+        if (sentences.Count == 0)
         {
             EndDialogue();
             return;
@@ -41,17 +48,16 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator TypeSentence(string sentence)
     {
-        //set to the text field or whatever
+        text.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
-            // add to the 
-            //TextAlignment += letter;
+            text.text += letter.ToString();
             yield return null;
         }
     }
 
     private void EndDialogue()
     {
-        Debug.Log("End of conversation");
+        dialogueBoxAnimator.SetBool("Open", false);
     }
 }
