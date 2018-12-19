@@ -13,6 +13,9 @@ public class DialogueManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI text;
 
+    [SerializeField]
+    private AudioClip keyStroke;
+
 
     private void Start()
     {
@@ -48,11 +51,14 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator TypeSentence(string sentence)
     {
+        int counter = 0;
         text.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
+            if (counter++ % 4 == 0)
+                AudioSource.PlayClipAtPoint(keyStroke, Vector2.zero, 0.3f);
             text.text += letter.ToString();
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.05f);
         }
     }
 

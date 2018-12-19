@@ -32,6 +32,18 @@ public class PlayerScript : MonoBehaviour
     private AudioClip scrollCollect;
 
     [SerializeField]
+    private AudioClip jumpSFX;
+
+    [SerializeField]
+    private AudioClip deathSFX;
+
+    [SerializeField]
+    private AudioClip rollSFX;
+
+    [SerializeField]
+    private AudioClip runSFX;
+
+    [SerializeField]
     private float forceFactor;
 
     [SerializeField]
@@ -42,8 +54,6 @@ public class PlayerScript : MonoBehaviour
 
     [SerializeField]
     private GameObject itemFeedback;
-
-
 
     private void Awake()
     {
@@ -85,11 +95,13 @@ public class PlayerScript : MonoBehaviour
     public void JumpInput()
     {
         isOnGround = true;
+        AudioSource.PlayClipAtPoint(jumpSFX, Vector2.zero);
     }
 
     public void RollInput()
     {
         isRolling = true;
+        AudioSource.PlayClipAtPoint(rollSFX, Vector2.zero);
     }
 
     public void SlashInput()
@@ -199,6 +211,8 @@ public class PlayerScript : MonoBehaviour
         isOnGround = true;
         isRolling = false;
         isSlashing = false;
+
+        AudioSource.PlayClipAtPoint(deathSFX, Vector2.zero);
     }
 
     private void DeathAnimationEnd()
@@ -248,5 +262,8 @@ public class PlayerScript : MonoBehaviour
         Gizmos.DrawWireSphere(attackPosition.position, attackRange);
     }
 
-    
+    private void PlayStepSound()
+    {
+        AudioSource.PlayClipAtPoint(runSFX, Vector2.zero,0.5f);
+    }
 }

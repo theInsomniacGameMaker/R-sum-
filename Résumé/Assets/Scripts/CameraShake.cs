@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
+    private AudioSource selfAudioSource;
+
+    private void Start()
+    {
+        selfAudioSource = GetComponent<AudioSource>();
+    }
+
     public void StartCameraShake(float magnitude, float duration)
     {
         StartCoroutine(ShakeCamera(magnitude, duration));
@@ -11,9 +18,10 @@ public class CameraShake : MonoBehaviour
 
     private IEnumerator ShakeCamera(float magnitude, float duration)
     {
+        selfAudioSource.Play();
         //Debug.Log("Camera Shake function called");
         Vector3 originalPosition = transform.localPosition;
-
+        
         float elapsedTime = 0.0f;
 
         while (elapsedTime < duration)
