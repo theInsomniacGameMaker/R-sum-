@@ -22,6 +22,10 @@ public class PlayerScript : MonoBehaviour
     public delegate void ScrollCollected();
     public static event ScrollCollected scrollCollected;
 
+    public delegate void NormalGameStarted();
+    public static event NormalGameStarted normalGameStarted;
+
+
 
     [SerializeField]
     private float forceFactor;
@@ -190,6 +194,7 @@ public class PlayerScript : MonoBehaviour
         GameManager.scrollSpeedMultiplier = 1;
         selfAnimator.enabled = true;
         isDead = false;
+        normalGameStarted();
     }
 
     private IEnumerator ResetTimeAfterDelay(float delay)
