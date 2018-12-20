@@ -23,7 +23,7 @@ public class PlayerScript : MonoBehaviour
     public static event NormalGameStarted normalGameStarted;
 
     [SerializeField]
-    private AudioClip blade;
+    private AudioClip bladeSFX;
 
     [SerializeField]
     private AudioClip enemyDeath;
@@ -95,19 +95,16 @@ public class PlayerScript : MonoBehaviour
     public void JumpInput()
     {
         isOnGround = true;
-        AudioSource.PlayClipAtPoint(jumpSFX, Vector2.zero);
     }
 
     public void RollInput()
     {
         isRolling = true;
-        AudioSource.PlayClipAtPoint(rollSFX, Vector2.zero);
     }
 
     public void SlashInput()
     {
         isSlashing = true;
-        AudioSource.PlayClipAtPoint(blade, Vector2.zero);
     }
 
     private void AnimatorUpdate()
@@ -265,5 +262,20 @@ public class PlayerScript : MonoBehaviour
     private void PlayStepSound()
     {
         AudioSource.PlayClipAtPoint(runSFX, Vector2.zero,0.5f);
+    }
+
+    private void PlayBladeSFX()
+    {
+        AudioSource.PlayClipAtPoint(bladeSFX, Vector2.zero);
+    }
+
+    private void PlayJumpSFX()
+    {
+        AudioSource.PlayClipAtPoint(jumpSFX, Vector2.zero);
+    }
+
+    private void PlayRollSFX()
+    {
+        AudioSource.PlayClipAtPoint(rollSFX, Vector2.zero);
     }
 }
