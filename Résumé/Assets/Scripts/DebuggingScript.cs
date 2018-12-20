@@ -13,6 +13,6 @@ public class DebuggingScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Time.timeScale += Input.GetAxis("Horizontal")*Time.deltaTime;
+        //Time.timeScale += Input.GetAxis("Horizontal")*Time.deltaTime;
     }
 }

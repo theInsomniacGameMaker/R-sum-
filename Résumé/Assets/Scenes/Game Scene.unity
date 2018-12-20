@@ -1089,6 +1089,45 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4588155704637926, guid: 6df27f3f04ea6c74a92b9d599d574853, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 4588155704637926, guid: 6df27f3f04ea6c74a92b9d599d574853, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4588155704637926, guid: 6df27f3f04ea6c74a92b9d599d574853, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4765355520258794, guid: 6df27f3f04ea6c74a92b9d599d574853, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 4765355520258794, guid: 6df27f3f04ea6c74a92b9d599d574853, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4765355520258794, guid: 6df27f3f04ea6c74a92b9d599d574853, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -56.070698
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494118318613860, guid: 6df27f3f04ea6c74a92b9d599d574853, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000,
+        type: 0}
+    - target: {fileID: 1937662811191146, guid: 6df27f3f04ea6c74a92b9d599d574853, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000,
+        type: 0}
+    - target: {fileID: 1396249084797468, guid: 6df27f3f04ea6c74a92b9d599d574853, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000,
+        type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6df27f3f04ea6c74a92b9d599d574853, type: 3}
 --- !u!1001 &144940801
@@ -1179,6 +1218,11 @@ PrefabInstance:
       propertyPath: runSFX
       value: 
       objectReference: {fileID: 8300000, guid: 8887a10c831862d41b004479b773521c, type: 3}
+    - target: {fileID: 114536161778356460, guid: 488a238f2ec234d4b9c78c02f97f7601,
+        type: 3}
+      propertyPath: bladeSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: da44ba23f75db2648bf16429319b980e, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 488a238f2ec234d4b9c78c02f97f7601, type: 3}
 --- !u!1 &181115308
@@ -4263,9 +4307,11 @@ MonoBehaviour:
     sentences:
     - Hi! The Insomniac Game Maker/Siddharth Jain has lost all of his skills and has
       been reincarnated in the Ninja Dimesion!
-    - Collect as many scrolls as you can to retieve his skills. Don't be afraid on
-      the other ninjas, use the Spacebar or the right side of the screen to attack.
-    - 'Use the '
+    - Collect as many scrolls as you can to retieve his skills. Don't be afraid of
+      the other ninjas, use the Spacebar or the Right side of the screen to attack.
+    - Use the Up arrow or the Top Left corner of the screen to Jump. Use the Down
+      arrow or the Bottom Left corner of the screen to Roll.
+    - GO GET 'EM!
 --- !u!114 &1107444470
 MonoBehaviour:
   m_ObjectHideFlags: 0

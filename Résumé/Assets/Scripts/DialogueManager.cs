@@ -59,7 +59,7 @@ public class DialogueManager : MonoBehaviour
             if (counter++ % 4 == 0)
                 AudioSource.PlayClipAtPoint(keyStroke, Vector2.zero, 0.3f);
             text.text += letter.ToString();
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.03f);
         }
     }
 

@@ -8,6 +8,7 @@ public class PlayerScript : MonoBehaviour
     private bool isRolling;
     private bool isSlashing;
     private bool isDead;
+    private bool isOnGround;
 
     private Rigidbody2D selfRigidBody;
     private Animator selfAnimator;
@@ -71,6 +72,11 @@ public class PlayerScript : MonoBehaviour
     {
         PlayerInput();
         AnimatorUpdate();
+
+        if (selfRigidBody.velocity.y<-0.001)
+        {
+            isOnGround = false;
+        }
     }
 
     private void PlayerInput()
@@ -95,27 +101,28 @@ public class PlayerScript : MonoBehaviour
     public void JumpInput()
     {
         isJumping = true;
-        isRolling = false;
-        isSlashing = false;
+        //isRolling = false;
+        //isSlashing = false;
     }
 
     public void RollInput()
     {
         isRolling = true;
-        isJumping = false;
-        isSlashing = false;
+        //isJumping = false;
+        //isSlashing = false;
     }
 
     public void SlashInput()
     {
         isSlashing = true;
-        isJumping = false;
-        isRolling = false;
+        //isJumping = false;
+        //isRolling = false;
     }
 
     private void AnimatorUpdate()
     {
         selfAnimator.SetBool("Jump", isJumping);
+        selfAnimator.SetBool("OnGround", isOnGround);
         selfAnimator.SetBool("Rolling", isRolling);
         selfAnimator.SetBool("Slashing", isSlashing);
         selfAnimator.SetBool("Dead", isDead);
@@ -125,6 +132,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
+            isOnGround = true;
             if (Mathf.Round(selfRigidBody.velocity.y) <= 0.0f)
             {
                 isJumping = false;
