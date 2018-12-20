@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject skillRetrievedText;
 
+    [SerializeField]
+    private GameObject skillPanel;
+
     private AudioSource selfAudioSource;
 
     private void Start()
@@ -29,8 +32,8 @@ public class GameManager : MonoBehaviour
     private void ShowText()
     {
         skillRetrievedText.SetActive(true);
-
         skillRetrievedText.GetComponent<Animator>().SetTrigger("Up");
+        skillRetrievedText.GetComponent<TMPro.TextMeshProUGUI>().text = "Skill Retrieved\n" + skillPanel.transform.GetChild(SkillPanelScript.indicesToFollow[SkillPanelScript.globalCounter]).GetComponent<TMPro.TextMeshProUGUI>().text;
     }
 
     private void StartBackgroundMusic()

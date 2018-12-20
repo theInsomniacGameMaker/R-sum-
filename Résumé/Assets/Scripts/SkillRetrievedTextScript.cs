@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SkillRetrievedTextScript : MonoBehaviour
 {
-    private Vector2 desiredPosition;
     RectTransform selfRectTransform;
 
     private void OnEnable()

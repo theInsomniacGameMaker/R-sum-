@@ -1,19 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SkillPanelScript : MonoBehaviour
 {
     Animator selfAnimator;
     GameObject[] children;
     SkillScript[] childrenSkillScripts;
-    List<int> indicesToFollow = new List<int>();
+    public static List<int> indicesToFollow = new List<int>();
 
+    [SerializeField]
+    TextMeshProUGUI bigText;
+    
     public delegate void InAnimationComplete(Vector2 vector2);
     public static event InAnimationComplete onScrollCollected;
 
     int currentSkillAcquired;
-    int globalCounter = 0;
+    public static int globalCounter = 0;
 
     private void Awake()
     {
@@ -68,6 +72,7 @@ public class SkillPanelScript : MonoBehaviour
 
                 if (!HasBeenAcquired(currentSkillAcquired))
                 {
+                    //bigText.text = "Skill Retrieved\n" + childrenSkillScripts[currentSkillAcquired].GetComponent<TextMeshProUGUI>().text;
                     CallMoveByForEveryChild(-(childrenSkillScripts[currentSkillAcquired].GetComponent<RectTransform>().localPosition));
                     break;
                 }
@@ -106,7 +111,7 @@ public class SkillPanelScript : MonoBehaviour
     private void HilightSkill()
     {
         childrenSkillScripts[currentSkillAcquired].SetToCollected();
-        Invoke("MoveOut", 0.3f);
+        Invoke("MoveOut", .3f);
     }
 
     private void OnDisable()
