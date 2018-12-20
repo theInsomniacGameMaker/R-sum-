@@ -7,13 +7,13 @@ public class SkillPanelScript : MonoBehaviour
     Animator selfAnimator;
     GameObject[] children;
     SkillScript[] childrenSkillScripts;
-    List <int> indicesToFollow = new List<int>();
+    List<int> indicesToFollow = new List<int>();
 
     public delegate void InAnimationComplete(Vector2 vector2);
     public static event InAnimationComplete onScrollCollected;
 
     int currentSkillAcquired;
-    int globalCounter =0;
+    int globalCounter = 0;
 
     private void Awake()
     {
@@ -40,6 +40,7 @@ public class SkillPanelScript : MonoBehaviour
                 if (numberToFillIn == indicesToFollow[j])
                 {
                     canfill = false;
+                    i--;
                     break;
                 }
             }
@@ -47,19 +48,20 @@ public class SkillPanelScript : MonoBehaviour
             {
                 indicesToFollow.Add(numberToFillIn);
             }
+            
         }
 
         PlayerScript.scrollCollected += MoveIn;
         SkillScript.movementComplete += HilightSkill;
+
+        Debug.Log("Length " + indicesToFollow.Count);
     }
 
     private void SkillAcquired()
     {
-        //Debug.Log("This Skill Acquiured function was called");
-
+        Debug.Log("Global Counter " + globalCounter);
         if (globalCounter < transform.childCount)
         {
-            int count = 0;
             while (true)
             {
                 currentSkillAcquired = indicesToFollow[globalCounter++];
@@ -67,11 +69,6 @@ public class SkillPanelScript : MonoBehaviour
                 if (!HasBeenAcquired(currentSkillAcquired))
                 {
                     CallMoveByForEveryChild(-(childrenSkillScripts[currentSkillAcquired].GetComponent<RectTransform>().localPosition));
-                    break;
-                }
-
-                if (count++ >= transform.childCount)
-                {
                     break;
                 }
             }
@@ -115,7 +112,7 @@ public class SkillPanelScript : MonoBehaviour
     private void OnDisable()
     {
         PlayerScript.scrollCollected -= MoveIn;
-        SkillScript.movementComplete -= HilightSkill; 
+        SkillScript.movementComplete -= HilightSkill;
     }
 
     private void SetAllToOriginalPosition()
@@ -126,5 +123,5 @@ public class SkillPanelScript : MonoBehaviour
         }
     }
 
-    
+
 }

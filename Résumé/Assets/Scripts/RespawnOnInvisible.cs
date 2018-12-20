@@ -46,7 +46,8 @@ public class RespawnOnInvisible : MonoBehaviour
         {
             if (spawnPosition != null)
             {
-                transform.position = new Vector2(spawnPosition.position.x, transform.position.y);
+                float offset = transform.position.x - resetPostion;
+                transform.position = new Vector2(spawnPosition.position.x + offset, transform.position.y);
 
                 if (gameObject.name == "Foreground")
                 {
