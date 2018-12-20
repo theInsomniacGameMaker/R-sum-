@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    private bool isOnGround;
+    private bool isJumping;
     private bool isRolling;
     private bool isSlashing;
     private bool isDead;
@@ -77,7 +77,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (!isDead)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow) && !isOnGround)
+            if (Input.GetKeyDown(KeyCode.UpArrow) && !isJumping)
             {
                 JumpInput();
             }
@@ -94,22 +94,28 @@ public class PlayerScript : MonoBehaviour
 
     public void JumpInput()
     {
-        isOnGround = true;
+        isJumping = true;
+        isRolling = false;
+        isSlashing = false;
     }
 
     public void RollInput()
     {
         isRolling = true;
+        isJumping = false;
+        isSlashing = false;
     }
 
     public void SlashInput()
     {
         isSlashing = true;
+        isJumping = false;
+        isRolling = false;
     }
 
     private void AnimatorUpdate()
     {
-        selfAnimator.SetBool("Jump", isOnGround);
+        selfAnimator.SetBool("Jump", isJumping);
         selfAnimator.SetBool("Rolling", isRolling);
         selfAnimator.SetBool("Slashing", isSlashing);
         selfAnimator.SetBool("Dead", isDead);
@@ -121,7 +127,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (Mathf.Round(selfRigidBody.velocity.y) <= 0.0f)
             {
-                isOnGround = false;
+                isJumping = false;
             }
         }
 
@@ -205,7 +211,7 @@ public class PlayerScript : MonoBehaviour
 
     private void DeathAnimationStart()
     {
-        isOnGround = true;
+        isJumping = true;
         isRolling = false;
         isSlashing = false;
 
