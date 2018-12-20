@@ -56,7 +56,7 @@ public class RespawnOnInvisible : MonoBehaviour
                         switch (SpawnManager.resetCount++ % 3)
                         {
                             case 0:
-                                Instantiate(enemy, new Vector2(transform.position.x + Random.Range(-1.0f, 1.0f), 6.0f), Quaternion.identity);
+                                Instantiate(enemy, new Vector2(transform.position.x + Random.Range(-0.5f, 0.5f), 6.0f), Quaternion.identity);
                                 break;
                             case 1:
                                 Instantiate(scroll, (Vector2)(transform.GetChild(Random.Range(0, transform.childCount)).position), Quaternion.identity);
