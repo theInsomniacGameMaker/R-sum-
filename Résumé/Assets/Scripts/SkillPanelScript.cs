@@ -58,7 +58,7 @@ public class SkillPanelScript : MonoBehaviour
         PlayerScript.scrollCollected += MoveIn;
         SkillScript.movementComplete += HilightSkill;
 
-        Debug.Log("Length " + indicesToFollow.Count);
+        //Debug.Log("Length " + indicesToFollow.Count);
     }
 
     private void SkillAcquired()
