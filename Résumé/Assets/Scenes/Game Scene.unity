@@ -251,10 +251,14 @@ PrefabInstance:
       propertyPath: spawnPosition
       value: 
       objectReference: {fileID: 264723265}
-    - target: {fileID: 1249257883, guid: 6df27f3f04ea6c74a92b9d599d574853, type: 3}
-      propertyPath: respawnPostion
-      value: 
-      objectReference: {fileID: 264723264}
+    - target: {fileID: 4588155704637926, guid: 6df27f3f04ea6c74a92b9d599d574853, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 4765355520258794, guid: 6df27f3f04ea6c74a92b9d599d574853, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.66
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6df27f3f04ea6c74a92b9d599d574853, type: 3}
 --- !u!1001 &144940801
@@ -481,6 +485,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 884887451327156125, guid: 414664c96c0391243a14df7dd370c612,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 884887451327156125, guid: 414664c96c0391243a14df7dd370c612,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 884887451823367475, guid: 414664c96c0391243a14df7dd370c612,
         type: 3}
@@ -927,16 +941,6 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 884887451327156125, guid: 414664c96c0391243a14df7dd370c612,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 884887451327156125, guid: 414664c96c0391243a14df7dd370c612,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 884887450515088608, guid: 414664c96c0391243a14df7dd370c612,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -1030,6 +1034,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 8715658613731979588, guid: 46e49e26e10727d418db5abc98aa3703,
+        type: 3}
+      propertyPath: dialogueBoxAnimator
+      value: 
+      objectReference: {fileID: 1107444468}
+    - target: {fileID: 8715658613731979588, guid: 46e49e26e10727d418db5abc98aa3703,
+        type: 3}
+      propertyPath: text
+      value: 
+      objectReference: {fileID: 122798612}
     - target: {fileID: 8715658613731979591, guid: 46e49e26e10727d418db5abc98aa3703,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1095,15 +1109,5 @@ PrefabInstance:
       propertyPath: skillPanel
       value: 
       objectReference: {fileID: 918736064}
-    - target: {fileID: 8715658613731979588, guid: 46e49e26e10727d418db5abc98aa3703,
-        type: 3}
-      propertyPath: dialogueBoxAnimator
-      value: 
-      objectReference: {fileID: 1107444468}
-    - target: {fileID: 8715658613731979588, guid: 46e49e26e10727d418db5abc98aa3703,
-        type: 3}
-      propertyPath: text
-      value: 
-      objectReference: {fileID: 122798612}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46e49e26e10727d418db5abc98aa3703, type: 3}
