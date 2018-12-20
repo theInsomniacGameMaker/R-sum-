@@ -203,6 +203,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: {x: -1, y: 0}
   deathFX: {fileID: 1438349995925354, guid: 6702cebf5193d3b4aa829c90b1e88ac9, type: 3}
+  landSFX: {fileID: 8300000, guid: 6b1248c5dea3466459ed5ebdeb32ae47, type: 3}
+  landGrunt: {fileID: 8300000, guid: a8e038d634d12234f8daf9176c0b5a0f, type: 3}
 --- !u!114 &114252675297522662
 MonoBehaviour:
   m_ObjectHideFlags: 0

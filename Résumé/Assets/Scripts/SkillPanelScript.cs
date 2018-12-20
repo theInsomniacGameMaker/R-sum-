@@ -63,7 +63,7 @@ public class SkillPanelScript : MonoBehaviour
 
     private void SkillAcquired()
     {
-        Debug.Log("Global Counter " + globalCounter);
+        //Debug.Log("Global Counter " + globalCounter);
         if (globalCounter < transform.childCount)
         {
             while (true)

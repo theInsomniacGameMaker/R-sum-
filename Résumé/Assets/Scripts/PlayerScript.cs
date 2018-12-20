@@ -44,6 +44,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     private AudioClip runSFX;
 
+
     [SerializeField]
     private float forceFactor;
 
@@ -73,7 +74,7 @@ public class PlayerScript : MonoBehaviour
         PlayerInput();
         AnimatorUpdate();
 
-        if (selfRigidBody.velocity.y<-0.001)
+        if (selfRigidBody.velocity.y < -0.001)
         {
             isOnGround = false;
         }
@@ -212,7 +213,7 @@ public class PlayerScript : MonoBehaviour
             if (enemy.gameObject.CompareTag("Hitbox"))
             {
                 enemy.transform.parent.SendMessage("TakeDamage");
-                AudioSource.PlayClipAtPoint(enemyDeath, Vector2.zero,10.0f);
+                AudioSource.PlayClipAtPoint(enemyDeath, Vector2.zero, 10.0f);
             }
         }
     }
@@ -275,7 +276,7 @@ public class PlayerScript : MonoBehaviour
 
     private void PlayStepSound()
     {
-        AudioSource.PlayClipAtPoint(runSFX, Vector2.zero,0.5f);
+        AudioSource.PlayClipAtPoint(runSFX, Vector2.zero, 0.6f);
     }
 
     private void PlayBladeSFX()

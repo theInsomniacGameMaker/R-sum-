@@ -57,7 +57,7 @@ public class DialogueManager : MonoBehaviour
         foreach (char letter in sentence.ToCharArray())
         {
             if (counter++ % 4 == 0)
-                AudioSource.PlayClipAtPoint(keyStroke, Vector2.zero, 0.3f);
+                AudioSource.PlayClipAtPoint(keyStroke, Vector2.zero, .5f);
             text.text += letter.ToString();
             yield return new WaitForSeconds(0.03f);
         }

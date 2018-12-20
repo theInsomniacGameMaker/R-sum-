@@ -6,17 +6,23 @@ public class EnemyScript : MonoBehaviour
 {
     private bool isFalling = true;
     private bool willCharge;
+    private bool willChargeOriginal;
     private bool willChargeHolder;
     private float speed;
     private Rigidbody2D selfRigidBody;
     private Animator selfAnimator;
     private RewindTime selfRewindTime;
-
+    private bool firstFall = true;
     [SerializeField]
     private Vector2 direction;
 
     [SerializeField]
     private GameObject deathFX;
+
+
+    [SerializeField]
+    private AudioClip landGrunt;
+
 
     private void Awake()
     {
@@ -41,6 +47,8 @@ public class EnemyScript : MonoBehaviour
         {
             speed = 4.0f;
         }
+
+        willChargeOriginal = willCharge;
     }
 
     private void Update()
@@ -78,6 +86,13 @@ public class EnemyScript : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+
+        if (selfRigidBody.velocity.x < -0.001f)
+        {
+            willCharge = false;
+            isFalling = true;
+        }
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -85,6 +100,13 @@ public class EnemyScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isFalling = false;
+            willCharge = willChargeOriginal;
+            if (firstFall)
+            {
+                firstFall = false;
+                AudioSource.PlayClipAtPoint(landGrunt, Vector2.zero, 1.0f);
+            }
+         
         }
 
     }
@@ -95,8 +117,9 @@ public class EnemyScript : MonoBehaviour
         {
             speed = 4.0f;
             willCharge = false;
+            willChargeOriginal = false;
         }
-        
+
     }
 
     public void TakeDamage()

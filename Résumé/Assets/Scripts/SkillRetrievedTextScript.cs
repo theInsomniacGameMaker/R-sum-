@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class SkillRetrievedTextScript : MonoBehaviour
 {
-    RectTransform selfRectTransform;
+
 
     private void OnEnable()
     {
-        selfRectTransform = GetComponent<RectTransform>();
     }
 
     private void Start()
     {
-        selfRectTransform = GetComponent<RectTransform>();
     }
    
     private void Disable()
